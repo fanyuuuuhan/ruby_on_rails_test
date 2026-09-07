@@ -59,3 +59,29 @@ erDiagram
         string target_title
     }
 
+
+## 本地環境建置步驟
+
+### 依賴環境
+- Ruby (版本見 Gemfile)
+- PostgreSQL
+- Overmind & tmux
+
+### 資料庫與伺服器設定
+1. 啟動 PostgreSQL 服務：
+   ```bash
+   sudo service postgresql start
+   ```
+2. 安裝相依套件：
+   ```bash
+   bundle install
+   ```
+3. 建立並準備資料庫：
+   ```bash
+   bin/rails db:create
+   ```
+4. 啟動開發環境：
+   ```bash
+   bin/dev
+   ```
+   伺服器預設運行於 http://localhost:3000
