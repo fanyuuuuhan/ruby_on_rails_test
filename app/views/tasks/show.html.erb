@@ -1,0 +1,6 @@
+<div>
+  <h1 class="font-bold text-4xl"> <%= @task.title %> </h1>
+ <p> <%= @task.content %> </p>
+  <p>任務狀態: <%= @task.status %> </p>
+  <%= link_to "回到任務列表", tasks_path %>
+</div>
