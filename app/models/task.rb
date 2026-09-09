@@ -1,6 +1,15 @@
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id         :bigint           not null, primary key
+#  content    :text
+#  status     :string           default("pending"), not null
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Task < ApplicationRecord
-    # 確保格式正確、資料齊全的資料才能寫入資料庫
-    # 不能為空的資料
-    validates :title, presence: true, length: { maximum: 100 } # 字數限制
+    validates :title, presence: true, length: { maximum: 100 }
     validates :status, presence: true
 end

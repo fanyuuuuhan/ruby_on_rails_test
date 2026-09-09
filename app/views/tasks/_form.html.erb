@@ -1,0 +1,29 @@
+
+<%= form_with(
+            model: @task, 
+            local: true,
+            html: { class: "space-y-4" }
+            ) do |form| %>
+  <div>
+    <%= form.label :title, "任務名稱" %>
+    <%= form.text_field :title,
+        class:"border border-gray-300 rounded-md p-2 w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :content, "任務描述" %>
+    <%= form.text_area :content, 
+        class:"border border-gray-300 rounded-md p-2 w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :status, "任務狀態" %>
+    <%= form.select :status, options_for_select([['待處理', 'pending'], ['進行中', 'in_progress'], ['已完成', 'completed']]) %>
+  </div>
+
+  <div>
+    <%= form.submit (
+        @task.new_record? ? "新增任務" : "更新任務") ,
+        class:"bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
