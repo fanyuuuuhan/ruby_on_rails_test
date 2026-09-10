@@ -1,0 +1,49 @@
+zh-TW:
+  hello: "你好"
+  activerecord:
+    attributes:
+        task: 
+          title: "任務名稱"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "不能為空白"
+            status:
+              blank: "不能為空白"
+  tasks:
+    index:
+      title: "任務列表"
+      new: "新增任務"
+      edit: "編輯"
+      delete: "刪除"
+      delete_check: "確定要刪除嗎？"
+      empty: "目前沒有任務"
+    new:
+      new_title: "新增任務"
+      back: "回到任務列表"
+    form:
+      error: "請修正以下錯誤"
+      form_title: "任務名稱"
+      form_content: "任務描述"
+      form_status: "任務狀態"
+      add_task: "新增任務"
+      update_task: "更新任務"
+      pending: "待處理"
+      in_progress: "進行中"
+      completed: "已完成"
+    edit:
+      edit_title: "編輯任務"
+      back: "回到任務列表"
+    show:
+      show_back: "回到任務列表"
+      show_status: "任務狀態"
+    controller:
+      create_success: "任務建立成功"
+      create_fail: "任務建立失敗"
+      update_success: "任務更新成功"
+      update_fail: "任務更新失敗"
+      destroy_success: "任務刪除成功"
+    
+        

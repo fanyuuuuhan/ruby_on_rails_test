@@ -1,29 +1,41 @@
 
+<% if @task.errors.any? %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold"><%= t(".error") %>:</strong>
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with(
             model: @task, 
             local: true,
             html: { class: "space-y-4" }
             ) do |form| %>
   <div>
-    <%= form.label :title, "任務名稱" %>
+    <%= form.label :title, t(".form_title") %>
     <%= form.text_field :title,
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
-    <%= form.label :content, "任務描述" %>
+    <%= form.label :content, t(".form_content") %>
     <%= form.text_area :content, 
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
-    <%= form.label :status, "任務狀態" %>
-    <%= form.select :status, options_for_select([['待處理', 'pending'], ['進行中', 'in_progress'], ['已完成', 'completed']]) %>
+    <%= form.label :status, t(".form_status") %>
+    <%= form.select :status, options_for_select([[t(".pending"), 'pending'], [t(".in_progress"), 'in_progress'], [t(".completed"), 'completed']]) %>
   </div>
 
   <div>
     <%= form.submit (
-        @task.new_record? ? "新增任務" : "更新任務") ,
+        @task.new_record? ? t(".add_task") : t(".update_task")) ,
         class:"bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
