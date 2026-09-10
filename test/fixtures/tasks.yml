@@ -12,9 +12,9 @@
 #  updated_at :datetime         not null
 #
 one:
-  title: MyString
+  title: MyString1
   content: MyText
 
 two:
-  title: MyString
+  title: MyString2
   content: MyText

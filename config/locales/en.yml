@@ -29,3 +29,44 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      task:
+        title: "Task Title"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "can't be blank"
+  tasks:
+    index:
+      title: "Task List"
+      new: "New Task"
+      edit: "Edit Task"
+      delete: "Delete Task"
+      delete_check: "Are you sure you want to delete?"
+      empty: "No tasks here"
+    new:
+      new_title: "New Task"
+      back: "Back to Task List"
+    form:
+      form_title: "Task Title"
+      form_content: "Task Content"
+      form_status: "Task Status"
+      add_task: "Add Task"
+      update_task: "Update Task"
+      pending: "Pending"
+      in_progress: "In Progress"
+      completed: "Completed"
+    edit:
+      edit_title: "Edit Task"
+      back: "Back to Task List"
+    show:
+      show_back: "Back to Task List"
+    controller:
+      create_success: "Task created successfully"
+      create_fail: "Task creation failed"
+      update_success: "Task updated successfully"
+      update_fail: "Task update failed"
+      destroy_success: "Task deleted successfully"

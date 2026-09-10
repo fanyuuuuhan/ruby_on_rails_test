@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
 
   def index
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :asc)
   end
 
   def show
@@ -21,9 +21,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to tasks_path, notice: "任務建立成功"
+      redirect_to tasks_path, notice: t("tasks.controller.create_success")
     else
-      flash.now[:alert] = "任務建立失敗"
+      flash.now[:alert] = t("tasks.controller.create_fail")
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,9 +33,9 @@ class TasksController < ApplicationController
   # 失敗->回到編輯頁面
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: "任務更新成功"
+      redirect_to @task, notice: t("tasks.controller.update_success")
     else
-      flash.now[:alert] = "任務更新失敗"
+      flash.now[:alert] = t("tasks.controller.update_fail")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   # 刪除任務
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: "任務刪除成功"
+    redirect_to tasks_path, notice: t("tasks.controller.destroy_success")
   end
 
   # 編輯任務
