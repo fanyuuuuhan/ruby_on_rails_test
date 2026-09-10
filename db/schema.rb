@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_04_131722) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_10_040209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,5 +20,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_04_131722) do
     t.string "status", default: "pending", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
+    t.check_constraint "char_length((content)::text) <= 1000", name: "task_content_length_check"
+    t.check_constraint "status::text = ANY (ARRAY['pending'::character varying, 'in_progress'::character varying, 'completed'::character varying]::text[])", name: "task_status_check"
   end
+
+  add_index "tasks", "lower(TRIM((title)::text))", name: "unique_task_title", unique: true
 end

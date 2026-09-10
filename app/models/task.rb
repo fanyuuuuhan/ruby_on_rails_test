@@ -16,11 +16,11 @@ class Task < ApplicationRecord
               case_sensitive: false,
               message: "此標題已經存在"
             }
-  validates :content, 
+  validates :content,
             length: {
               maximum: 1000,
               message: "不能超過1000個字"
-            }
+            },
             allow_blank: true
   validates :status, presence: true,
             inclusion: {
