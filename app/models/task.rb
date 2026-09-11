@@ -44,8 +44,8 @@ class Task < ApplicationRecord
     scope_name = allowed_scopes.fetch(sort_order, :created_at_desc)
     public_send(scope_name)
   end
-  
-            
+
+
   validate :due_date_cannot_be_in_the_past
   private
   def due_date_cannot_be_in_the_past

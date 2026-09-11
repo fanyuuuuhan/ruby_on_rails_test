@@ -19,9 +19,8 @@ class:"px-5 items-center justify-center"%>
             </p>
             <%end%>
         <%end%>  
-
         <%= link_to t(".delete"), task_path(task),
-        data: { 
+        data: {
           turbo_method: :delete,
           turbo_confirm: t(".delete_check") 
           } ,
