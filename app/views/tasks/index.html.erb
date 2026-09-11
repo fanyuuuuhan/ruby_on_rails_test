@@ -1,6 +1,7 @@
 
+<div class="w-[120%] flex bg-gray-100">
 
-  <h1 class="font-bold text-4xl"><%= t(".title") %></h1>
+<h1 class="font-bold text-4xl"><%= t(".title") %></h1>
 
 
 
@@ -13,7 +14,9 @@ class:"px-5 items-center justify-center"%>
         <%= turbo_frame_tag dom_id(task), class:"flex-1" do %>
           <%= render "task", task: task %>
           <%if task.due_date.present?%>
-            <p><%= t(".due_date") %>: <%= task.due_date.strftime("%Y-%m-%d") %></p>
+            <p class="text-sm text-gray-500 ml-auto">
+              <%= t(".due_date") %>: <%= task.due_date.strftime("%Y-%m-%d") %>
+            </p>
             <%end%>
         <%end%>  
 
@@ -30,8 +33,9 @@ class:"px-5 items-center justify-center"%>
    <p><%= t(".empty") %></p>
   <%end%>
 
-  <%= form_with url: tasks_path,html:{class: "px-5"}, method: :get, local: true do |form| %>
+  <%= form_with url: tasks_path,html:{class: "px-5 text-sm ml-auto"}, method: :get, local: true do |form| %>
     <div>
       <%= form.select :sort_order, options_for_select([[t(".sort_created_at_asc"), 'created_at_asc'], [t(".sort_created_at_desc"), 'created_at_desc'], [t(".sort_title_asc"), 'title_asc'], [t(".sort_due_date_asc"), 'due_date_asc'], [t(".sort_due_date_desc"), 'due_date_desc']], params[:sort_order]), {}, { onchange: "this.form.submit();" } %>
   </div>
   <%end%>
+  </div>
