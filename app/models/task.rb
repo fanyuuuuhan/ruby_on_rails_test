@@ -27,4 +27,10 @@ class Task < ApplicationRecord
               in: %w[pending in_progress completed],
               message: "不是有效的狀態"
             }
+  validate :due_date_cannot_be_in_the_past
+  private
+  def due_date_cannot_be_in_the_past
+    return if due_date.blank?
+    errors.add(:due_date, "不能是過去的日期") if due_date < Date.today
+  end
 end

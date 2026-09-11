@@ -47,6 +47,13 @@ en:
       delete: "Delete Task"
       delete_check: "Are you sure you want to delete?"
       empty: "No tasks here"
+      due_date: "Due Date"
+      sort: "Sort By"
+      sort_created_at_asc: "Sort by Created At (Oldest to Newest)"
+      sort_created_at_desc: "Sort by Created At (Newest to Oldest)"
+      sort_title_asc: "Sort by Task Title (A to Z)"
+      sort_due_date_asc: "Sort by Due Date (Oldest to Newest)"
+      sort_due_date_desc: "Sort by Due Date (Newest to Oldest)"
     new:
       new_title: "New Task"
       back: "Back to Task List"
@@ -59,11 +66,13 @@ en:
       pending: "Pending"
       in_progress: "In Progress"
       completed: "Completed"
+      form_due_date: "Due Date"
     edit:
       edit_title: "Edit Task"
       back: "Back to Task List"
     show:
       show_back: "Back to Task List"
+      show_status: "Task Status"
     controller:
       create_success: "Task created successfully"
       create_fail: "Task creation failed"
