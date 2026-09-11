@@ -10,6 +10,17 @@
 #  updated_at :datetime         not null
 #
 class Task < ApplicationRecord
+  SORT_ORDERS = {
+    title_asc: { title: :asc },
+    created_at_desc: { created_at: :desc },
+    created_at_asc: { created_at: :asc },
+    due_date_desc: { due_date: :desc },
+    due_date_asc: { due_date: :asc }
+  }.freeze
+  scope :sorted_by, ->(sort_order = created_at_desc)do
+   select_order = sort_order&.to_sym || :created_at_desc
+   order(SORT_ORDERS.fetch(select_order, SORT_ORDERS[:created_at_desc]))
+  end
   validates :title, presence: true,
             length: { maximum: 100 },
             uniqueness: {
@@ -27,29 +38,7 @@ class Task < ApplicationRecord
               in: %w[pending in_progress completed],
               message: "不是有效的狀態"
             }
-  scope :created_at_desc, -> { order(created_at: :desc) }
-  scope :created_at_asc,  -> { order(created_at: :asc) }
-  scope :title_desc,      -> { order(title: :desc) }
-  scope :due_date_desc,   -> { order(due_date: :desc) }
-  scope :due_date_asc,    -> { order(due_date: :asc) }
-  def self.sorted_by(sort_order)
-    sort_order = sort_order.presence || "created_at_desc"
-    allowed_scopes={
-      "created_at_desc" => :created_at_desc,
-      "created_at_asc" => :created_at_asc,
-      "title_desc" => :title_desc,
-      "due_date_desc" => :due_date_desc,
-      "due_date_asc" => :due_date_asc
-    }
-    scope_name = allowed_scopes.fetch(sort_order, :created_at_desc)
-    public_send(scope_name)
-  end
-
-
-  validate :due_date_cannot_be_in_the_past
-  private
-  def due_date_cannot_be_in_the_past
-    return if due_date.blank?
-    errors.add(:due_date, "不能是過去的日期") if due_date < Date.today
-  end
+  validates_comparison_of :due_date, 
+            greater_than_or_equal_to: ->{ Date.current },
+            allow_blank: true
 end

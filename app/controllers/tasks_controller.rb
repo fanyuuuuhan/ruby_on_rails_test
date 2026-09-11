@@ -5,8 +5,7 @@ class TasksController < ApplicationController
 
 
   def index
-    @sort = params[:sort_order]
-    @tasks = Task.sorted_by(@sort)
+    @tasks = Task.sorted_by(params[:sort_order])
   end
 
   def show
