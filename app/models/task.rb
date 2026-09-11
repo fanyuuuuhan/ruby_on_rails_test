@@ -17,7 +17,7 @@ class Task < ApplicationRecord
     due_date_desc: { due_date: :desc },
     due_date_asc: { due_date: :asc }
   }.freeze
-  scope :sorted_by, ->(sort_order = created_at_desc)do
+  scope :sorted_by, ->(sort_order = created_at_desc) do
    select_order = sort_order&.to_sym || :created_at_desc
    order(SORT_ORDERS.fetch(select_order, SORT_ORDERS[:created_at_desc]))
   end
@@ -38,7 +38,7 @@ class Task < ApplicationRecord
               in: %w[pending in_progress completed],
               message: "不是有效的狀態"
             }
-  validates_comparison_of :due_date, 
-            greater_than_or_equal_to: ->{ Date.current },
+  validates_comparison_of :due_date,
+            greater_than_or_equal_to: -> { Date.current },
             allow_blank: true
 end
