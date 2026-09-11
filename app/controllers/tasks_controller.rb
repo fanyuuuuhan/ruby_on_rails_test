@@ -5,18 +5,8 @@ class TasksController < ApplicationController
 
 
   def index
-    sort_orders ={
-      "created_at_asc" => "created_at ASC",
-      "created_at_desc" => "created_at DESC",
-      "title_asc" => "title ASC",
-      "due_date_asc" => "due_date ASC",
-      "due_date_desc" => "due_date DESC"
-    }
-
-    @sort = params[:sort_order] || "created_at_asc"
-    order_rules=sort_orders.fetch(@sort, sort_orders["created_at_asc"])
-
-    @tasks = Task.order(order_rules)
+    @sort = params[:sort_order]
+    @tasks = Task.sorted_by(@sort)
   end
 
   def show

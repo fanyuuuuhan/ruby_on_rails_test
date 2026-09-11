@@ -27,6 +27,25 @@ class Task < ApplicationRecord
               in: %w[pending in_progress completed],
               message: "不是有效的狀態"
             }
+  scope :created_at_desc, -> { order(created_at: :desc) }
+  scope :created_at_asc,  -> { order(created_at: :asc) }
+  scope :title_desc,      -> { order(title: :desc) }
+  scope :due_date_desc,   -> { order(due_date: :desc) }
+  scope :due_date_asc,    -> { order(due_date: :asc) }
+  def self.sorted_by(sort_order)
+    sort_order = sort_order.presence || "created_at_desc"
+    allowed_scopes={
+      "created_at_desc" => :created_at_desc,
+      "created_at_asc" => :created_at_asc,
+      "title_desc" => :title_desc,
+      "due_date_desc" => :due_date_desc,
+      "due_date_asc" => :due_date_asc
+    }
+    scope_name = allowed_scopes.fetch(sort_order, :created_at_desc)
+    public_send(scope_name)
+  end
+  
+            
   validate :due_date_cannot_be_in_the_past
   private
   def due_date_cannot_be_in_the_past
