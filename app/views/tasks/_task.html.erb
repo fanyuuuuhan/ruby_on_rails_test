@@ -1,0 +1,23 @@
+<div class="flex items-center gap-3">
+  <div class="flex gap-10 items-center">
+    <%= link_to task.title, task_path(task),
+        data: { turbo_frame: "_top" },
+        class: "font-bold" %>
+    <p><%= task.content %></p>
+
+    <% status_text ={
+      "pending" => "待處理",
+      "in_progress" => "進行中",
+      "completed" => "已完成" }[task.status]  %>
+    <p><%= t("tasks.show.show_status") %>: 
+      <%= status_text %>
+    </p>
+  </div>
+
+  <%= link_to edit_task_path(task),
+      aria: { label: t("tasks.index.edit") },
+      title: t("tasks.index.edit"),
+      class: "p-2 hover:bg-gray-100 rounded" do %>
+    ✎
+  <% end %>
+</div>

@@ -10,12 +10,11 @@
   </div>
 <% end %>
 
-
 <%= form_with(
-            model: @task, 
-            local: true,
-            html: { class: "space-y-4" }
-            ) do |form| %>
+      model: @task,
+      data:{ turbo_frame:"_top" },
+      html: { class: "space-y-4 px-5" }
+    ) do |form| %>
   <div>
     <%= form.label :title, t(".form_title") %>
     <%= form.text_field :title,
@@ -24,13 +23,22 @@
 
   <div>
     <%= form.label :content, t(".form_content") %>
-    <%= form.text_area :content, 
+    <%= form.text_area :content,
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
     <%= form.label :status, t(".form_status") %>
-    <%= form.select :status, options_for_select([[t(".pending"), 'pending'], [t(".in_progress"), 'in_progress'], [t(".completed"), 'completed']]) %>
+    <%= form.select :status, 
+      options_for_select([[t(".pending"), 'pending'],
+      [t(".in_progress"), 'in_progress'],
+      [t(".completed"), 'completed']]) %>
+  </div>
+
+  <div>
+    <%= form.label :due_date, t(".form_due_date") %>
+    <%= form.date_field :due_date,
+        class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
