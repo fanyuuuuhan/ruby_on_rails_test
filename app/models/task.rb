@@ -10,16 +10,19 @@
 #  updated_at :datetime         not null
 #
 class Task < ApplicationRecord
-  SORT_ORDERS = {
-    title_asc: { title: :asc },
-    created_at_desc: { created_at: :desc },
-    created_at_asc: { created_at: :asc },
-    due_date_desc: { due_date: :desc },
-    due_date_asc: { due_date: :asc }
-  }.freeze
-  scope :sorted_by, ->(sort_order = created_at_desc) do
-   select_order = sort_order&.to_sym || :created_at_desc
-   order(SORT_ORDERS.fetch(select_order, SORT_ORDERS[:created_at_desc]))
+  SORT_ORDERS = %i[
+    title_asc
+    created_at_desc
+    created_at_asc
+    due_date_desc
+    due_date_asc
+].to_h do |sort_order|
+  column, direction = sort_order.to_s.split(/_(?=[^_]+$)/)
+  [sort_order, { column => direction.to_sym }]
+end.freeze
+  scope :sorted_by, ->(sort_order = :created_at_desc) do
+   sort_key = sort_order&.to_sym || :created_at_desc
+   order(SORT_ORDERS[sort_key] || SORT_ORDERS[:created_at_desc])
   end
   validates :title, presence: true,
             length: { maximum: 100 },
