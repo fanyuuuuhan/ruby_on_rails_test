@@ -18,7 +18,7 @@ class Task < ApplicationRecord
     due_date_asc
 ].to_h do |sort_order|
   column, direction = sort_order.to_s.split(/_(?=[^_]+$)/)
-  [sort_order, { column => direction.to_sym }]
+  [ sort_order, { column => direction.to_sym } ]
 end.freeze
   scope :sorted_by, ->(sort_order = :created_at_desc) do
    sort_key = sort_order&.to_sym || :created_at_desc
