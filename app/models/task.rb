@@ -21,8 +21,7 @@ class Task < ApplicationRecord
   [ sort_order, { column => direction.to_sym } ]
 end.freeze
   scope :sorted_by, ->(sort_order = :created_at_desc) do
-   sort_key = sort_order&.to_sym || :created_at_desc
-   order(SORT_ORDERS[sort_key] || SORT_ORDERS[:created_at_desc])
+    order(SORT_ORDERS[sort_order] || SORT_ORDERS[:created_at_desc])
   end
   validates :title, presence: true,
             length: { maximum: 100 },
