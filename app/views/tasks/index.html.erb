@@ -1,27 +1,40 @@
 
+<div class="w-[120%] flex">
 
-  <h1 class="font-bold text-4xl"><%= t(".title") %></h1>
+<h1 class="font-bold text-4xl"><%= t(".title") %></h1>
 
 
 
-<%=link_to t(".new"), new_task_path %>
+<%=link_to t(".new"), new_task_path ,
+class:"px-5 items-center justify-center"%>
 <%if @tasks.any?%>
-  <ul>
+  <ul class="space-y-5 w-[50%]">
     <% @tasks.each do |task| %>
-      <li>
-        <%= link_to task.title, task_path(task),
-        class:"mx-5 px-4 py-2 " %>
-        <%= link_to t(".edit"), edit_task_path(task) ,
-        class:"px-4 pt-5 font-bold" %>
+      <li class="flex justify-between items-center gap-3 p-4 border rounded">
+        <%= turbo_frame_tag dom_id(task), class:"flex-1" do %>
+          <%= render "task", task: task %>
+          <%if task.due_date.present?%>
+            <p class="text-sm text-gray-500 ml-auto">
+              <%= t(".due_date") %>: <%= task.due_date.strftime("%Y-%m-%d") %>
+            </p>
+            <%end%>
+        <%end%>  
         <%= link_to t(".delete"), task_path(task),
-                           data: { 
-                            turbo_method: :delete,
-                            turbo_confirm: t(".delete_check") 
-                            } ,
-                            class:"px-4 pt-5 font-bold" %>
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: t(".delete_check") 
+          } ,
+          class:"px-4 py-2 font-bold bg-pink-100" %>
       </li>
     <% end %>
   </ul>
   <%else%>
    <p><%= t(".empty") %></p>
   <%end%>
+
+  <%= form_with url: tasks_path,html:{class: "px-5 text-sm ml-auto"}, method: :get, local: true do |form| %>
+    <div>
+      <%= form.select :sort_order, options_for_select([[t(".sort_created_at_asc"), 'created_at_asc'], [t(".sort_created_at_desc"), 'created_at_desc'], [t(".sort_title_asc"), 'title_asc'], [t(".sort_due_date_asc"), 'due_date_asc'], [t(".sort_due_date_desc"), 'due_date_desc']], params[:sort_order]), {}, { onchange: "this.form.submit();" } %>
+  </div>
+  <%end%>
+  </div>

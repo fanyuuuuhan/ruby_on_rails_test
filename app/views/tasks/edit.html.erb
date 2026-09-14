@@ -1,6 +1,7 @@
 <div>
-<h1 class="font-bold text-4xl"><%=t(".edit_title")%></h1>
+  <h1 class="font-bold text-4xl"><%=t(".edit_title")%></h1>
   <h1 class="font-bold text-3xl"><%= @task.title %></h1>
-  <%=render "form"%>
-  <%=link_to t(".back"), tasks_path %>
+  <%= turbo_frame_tag dom_id(@task) do %>
+    <%=render "form", task: @task %>
+  <%end%>
 </div>

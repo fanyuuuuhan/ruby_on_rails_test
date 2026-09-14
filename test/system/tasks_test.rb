@@ -13,11 +13,15 @@ class TasksTest < ApplicationSystemTestCase
 
   test "編輯任務" do
     task = create(:task)
-    visit edit_task_url(task)
-    fill_in "任務名稱", with: "更新後的任務標題"
-    fill_in "任務描述", with: "更新後的任務內容說明"
-    select "進行中", from: "任務狀態"
-    click_on "更新任務"
+    visit tasks_url
+    within("turbo-frame##{dom_id(task)}") do
+      click_on "編輯"
+      fill_in "任務名稱", with: "更新後的任務標題"
+      fill_in "任務描述", with: "更新後的任務內容說明"
+      select "進行中", from: "任務狀態"
+      click_on "更新任務"
+    end
+
     assert_text "任務更新成功"
   end
 

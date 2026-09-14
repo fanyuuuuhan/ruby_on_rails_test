@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
 
   def index
-    @tasks = Task.order(created_at: :asc)
+    @tasks = Task.sorted_by(params[:sort_order])
   end
 
   def show
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   # 失敗->回到編輯頁面
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: t("tasks.controller.update_success")
+      redirect_to tasks_path, notice: t("tasks.controller.update_success")
     else
       flash.now[:alert] = t("tasks.controller.update_fail")
       render :edit, status: :unprocessable_entity
@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   private
   # 僅允許 title, content, status 這三個欄位被傳入
   def task_params
-    params.require(:task).permit(:title, :content, :status)
+    params.require(:task).permit(:title, :content, :status, :due_date)
   end
 
   def set_task
