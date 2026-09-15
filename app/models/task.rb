@@ -16,13 +16,85 @@ class Task < ApplicationRecord
     created_at_asc
     due_date_desc
     due_date_asc
-].to_h do |sort_order|
-  column, direction = sort_order.to_s.split(/_(?=[^_]+$)/)
-  [ sort_order, { column => direction.to_sym } ]
-end.freeze
+    priority_asc
+    priority_desc
+  ].to_h do |sort_order|
+    column, direction = sort_order.to_s.split(/_(?=[^_]+$)/)
+    [ sort_order, { column => direction.to_sym } ]
+  end.merge(
+    priority_asc: Arel.sql(
+      "CASE priority WHEN 'low' THEN 0 WHEN 'medium' THEN 1 WHEN 'high' THEN 2 ELSE 3 END ASC"
+    ),
+    priority_desc: Arel.sql(
+      "CASE priority WHEN 'high' THEN 0 WHEN 'medium' THEN 1 WHEN 'low' THEN 2 ELSE 3 END ASC"
+    )
+  ).freeze
   scope :sorted_by, ->(sort_order = :created_at_desc) do
+    sort_order = sort_order.to_s.to_sym
     order(SORT_ORDERS[sort_order] || SORT_ORDERS[:created_at_desc])
   end
+
+  SEARCH_SCOPES = %w[
+    title_eq
+    title_cont
+    status_eq
+    status_in
+    due_date_gteq
+    due_date_lteq
+    priority_eq
+    priority_in
+  ].freeze
+
+  enum :priority, {
+    low: "low",
+    medium: "medium",
+    high: "high"
+  }, validate: true
+  def self.search(filters = {})
+    relation = all
+    filters.each do |key, value|
+      next unless SEARCH_SCOPES.include?(key.to_s)
+
+      relation = relation.public_send(key, value)
+    end
+    relation
+  end
+
+  scope :title_eq, ->(value) { 
+    value.present? ? where(title: value) : all
+  }
+  scope :title_cont, ->(value) {
+    if value.present?
+      value_escaped = sanitize_sql_like(value.to_s)
+      where("title LIKE ?", "%#{value_escaped}%")
+    else
+      all
+    end
+  }
+  scope :status_eq, ->(value) {
+    value.present? ? where(status: value) : all
+  }
+  scope :status_in, ->(values) {
+    values = Array(values).reject(&:blank?)
+    values.present? ? where(status: values) : all
+  }
+  scope :due_date_gteq, ->(value) {
+    value.present? ? where("due_date >= ?", value) : all
+  }
+  scope :due_date_lteq, ->(value) {
+    value.present? ? where("due_date <= ?", value) : all
+  }
+  scope :priority_eq, ->(value) {
+    value.present? ? where(priority: priorities[value.to_s]) : all
+  }
+  scope :priority_in, ->(values) {
+    values = Array(values).reject(&:blank?)
+    next all if values.empty?
+
+    priorities = values.filter_map { |value| self.priorities[value.to_s] }
+    priorities.present? ? where(priority: priorities) : none
+  }
+
   validates :title, presence: true,
             length: { maximum: 100 },
             uniqueness: {

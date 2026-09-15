@@ -44,4 +44,61 @@ class TasksTest < ApplicationSystemTestCase
     assert_text task.content
     assert_text task.status
   end
+
+  test "依任務名稱查詢" do
+    matching_task = create(
+      :task,
+      title: "任務標題A",
+      status: "pending"
+    )
+    create(
+      :task,
+      title: "任務標題B",
+      status: "pending"
+    )
+    visit tasks_url
+    fill_in "任務名稱", with: "A"
+    click_on "查詢"
+    assert_text matching_task.title
+    assert_no_text "任務標題B"
+  end
+
+  test "依任務狀態查詢" do
+    matching_task = create(
+      :task,
+      title: "待處理任務",
+      status: "pending"
+    )
+    create(
+      :task,
+      title: "已完成任務",
+      status: "completed"
+    )
+    visit tasks_url
+    select "待處理", from: "任務狀態"
+    click_on "查詢"
+    assert_text matching_task.title
+    assert_no_text "已完成任務"
+  end
+
+  test "依截止日期查詢" do
+    matching_task = create(
+      :task,
+      title: "時間內任務",
+      status: "pending",
+      due_date: Date.new(2026, 9, 15)
+    )
+    create(
+      :task,
+      title: "時間外任務",
+      status: "pending",
+      due_date: Date.new(2026, 10, 1)
+    )
+    visit tasks_url
+    fill_in "截止日期(起)", with: "2026-09-01"
+    fill_in "截止日期(迄)", with: "2026-10-01"
+    click_on "查詢"
+    assert_text matching_task.title
+    assert_no_text "時間外任務"
+  end
 end

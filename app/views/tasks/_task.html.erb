@@ -12,6 +12,14 @@
     <p><%= t("tasks.show.show_status") %>: 
       <%= status_text %>
     </p>
+
+    <% priority_text ={
+      "low" => "低",
+      "medium" => "中",
+      "high" => "高" }[task.priority]  %>
+    <p><%= t("tasks.form.form_priority") %>:
+      <%= priority_text %>
+    </p>
   </div>
 
   <%= link_to edit_task_path(task),
