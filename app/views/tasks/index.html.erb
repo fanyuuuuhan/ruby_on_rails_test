@@ -30,7 +30,7 @@ class:"px-5 items-center justify-center"%>
   </ul>
   <%else%>
    <p><%= t(".empty") %></p>
-  <%end%>
+  <% end %>
 
   <%= form_with url: tasks_path,
       html:{class: "px-5 text-sm ml-auto"}, 
@@ -66,5 +66,5 @@ class:"px-5 items-center justify-center"%>
                 
       <%= form.submit t(".search_button"), class: "bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>
     </div>
-  <%end%>
+  <% end %>
   </div>
