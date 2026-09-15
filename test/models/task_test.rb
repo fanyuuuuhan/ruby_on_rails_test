@@ -112,7 +112,7 @@ class TaskTest < ActiveSupport::TestCase
     newer_task = Task.create!(title: "較新任務", status: "pending", created_at: 1.day.ago)
 
     result = Task
-      .where(id: [older_task.id, newer_task.id])
+      .where(id: [ older_task.id, newer_task.id ])
       .sorted_by("created_at_asc")
 
     assert_equal [ older_task, newer_task ], result.to_a
@@ -128,7 +128,7 @@ class TaskTest < ActiveSupport::TestCase
                  Task.sorted_by("priority; DROP TABLE tasks").to_sql
   end
 
-  test "可以精準查詢標題名稱" do 
+  test "可以精準查詢標題名稱" do
     matching_task = Task.create!(title: "專案報告", status: "pending")
     Task.create!(title: "其他任務", status: "pending")
 
@@ -137,7 +137,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_equal [ matching_task ], result.to_a
   end
 
-  test "可以模糊查詢標題名稱" do 
+  test "可以模糊查詢標題名稱" do
     matching_task = Task.create!(title: "專案報告", status: "pending")
     Task.create!(title: "專案紀錄", status: "pending")
 
@@ -161,7 +161,7 @@ class TaskTest < ActiveSupport::TestCase
     in_progress_task = Task.create!(title: "進行中任務", status: "in_progress")
     Task.create!(title: "已完成任務", status: "completed")
 
-    result = Task.status_in(["pending", "in_progress"])
+    result = Task.status_in([ "pending", "in_progress" ])
 
     assert_includes result.to_a, pending_task
     assert_includes result.to_a, in_progress_task
@@ -176,7 +176,7 @@ class TaskTest < ActiveSupport::TestCase
 
     assert_equal [ high_task ], Task.priority_eq("high").to_a
     assert_equal [ low_task, high_task ], scoped_tasks.priority_in(%w[low high]).to_a
-    assert_empty Task.priority_in(["invalid"]).to_a
+    assert_empty Task.priority_in([ "invalid" ]).to_a
   end
 
   test "可以查詢指定截止日期起始之後的任務" do

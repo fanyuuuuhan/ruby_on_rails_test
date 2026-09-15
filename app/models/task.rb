@@ -60,7 +60,7 @@ class Task < ApplicationRecord
     relation
   end
 
-  scope :title_eq, ->(value) { 
+  scope :title_eq, ->(value) {
     value.present? ? where(title: value) : all
   }
   scope :title_cont, ->(value) {

@@ -55,11 +55,11 @@ class:"px-5 items-center justify-center"%>
         options_for_select([['', ''], [t(".low"), 'low'], [t(".medium"), 'medium'], [t(".high"), 'high']],
         params[:priority_eq]), {}, { onchange: "this.form.submit();" } %>
       
-      <%= form.label :date, t(".search_due_date_start") %>
+      <%= form.label :due_date_gteq, t(".search_due_date_start") %>
       <%= form.date_field :due_date_gteq, 
         value: params[:due_date_gteq], 
         class: "border border-gray-300 rounded-md p-2" %>
-      <%= form.label :date, t(".search_due_date_end") %>
+      <%= form.label :due_date_lteq, t(".search_due_date_end") %>
       <%= form.date_field :due_date_lteq, 
         value: params[:due_date_lteq], 
         class: "border border-gray-300 rounded-md p-2" %>
