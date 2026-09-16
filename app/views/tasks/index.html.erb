@@ -43,7 +43,7 @@
     <div class="flex flex-col items-center gap-2">
       <%= form.select :sort_order,
         options_for_select(
-          [[t(".sort_created_at_asc"), "created_at_asc"], [t(".sort_created_at_desc"), "created_at_desc"], [t(".sort_title_asc"), "title_asc"], [t(".sort_due_date_asc"), "due_date_asc"], [t(".sort_due_date_desc"), "due_date_desc"], [t(".sort_priority_asc"), "priority_asc"], [t(".sort_priority_desc"), "priority_desc"]], 
+          [[t(".sort_created_at_asc"), "created_at_asc"], [t(".sort_created_at_desc"), "created_at_desc"], [t(".sort_title_asc"), "title_asc"], [t(".sort_due_date_asc"), "due_date_asc"], [t(".sort_due_date_desc"), "due_date_desc"], [t(".sort_priority_asc"), "priority_asc"], [t(".sort_priority_desc"), "priority_desc"]],
           params[:sort_order]
         ), {}, { onchange: "this.form.submit();" } %>
 
@@ -55,7 +55,7 @@
       <%= form.label :status_eq, t(".search_status") %>
       <%= form.select :status_eq,
         options_for_select(
-          [["", ""]] + Task.statuses.map do |status|
+          [["", ""]] + Task.statuses.keys.map do |status|
             [t("tasks.form.#{status}"), status]
           end,
           params[:status_eq]

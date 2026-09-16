@@ -97,11 +97,13 @@ class Task < ApplicationRecord
     values = Array(values).reject(&:blank?)
     next all if values.empty?
 
-    priorities = values.filter do |value| 
-      priorities.key?[value.to_s]
+    valid_priorities = values.filter do |value|
+      self.priorities.key?(value.to_s)
+    end.map do |value|
+      self.priorities[value.to_s]
     end
-    
-    priorities.present? ? where(priority: priorities) : none
+
+    valid_priorities.present? ? where(priority: valid_priorities) : none
   }
 
   validates :title, presence: true,
