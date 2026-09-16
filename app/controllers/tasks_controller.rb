@@ -3,9 +3,10 @@ class TasksController < ApplicationController
   # 避免重複的程式碼
   before_action :set_task, only: %i[show edit update destroy]
 
-
   def index
-    @tasks = Task.sorted_by(params[:sort_order])
+    @tasks = Task.search(
+      params.permit(*Task::SEARCH_SCOPES)
+    ).sorted_by(params[:sort_order])
   end
 
   def show
@@ -51,9 +52,10 @@ class TasksController < ApplicationController
   end
 
   private
-  # 僅允許 title, content, status 這三個欄位被傳入
+
+  # 僅允許 title, content, status, due_date, priority 這五個欄位被傳入
   def task_params
-    params.require(:task).permit(:title, :content, :status, :due_date)
+    params.require(:task).permit(:title, :content, :status, :due_date, :priority)
   end
 
   def set_task
