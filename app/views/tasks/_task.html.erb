@@ -5,20 +5,12 @@
         class: "font-bold" %>
     <p><%= task.content %></p>
 
-    <% status_text ={
-      "pending" => "待處理",
-      "in_progress" => "進行中",
-      "completed" => "已完成" }[task.status]  %>
     <p><%= t("tasks.show.show_status") %>: 
-      <%= status_text %>
+      <%= t("tasks.form.#{task.status}") %>
     </p>
 
-    <% priority_text ={
-      "low" => "低",
-      "medium" => "中",
-      "high" => "高" }[task.priority]  %>
     <p><%= t("tasks.form.form_priority") %>:
-      <%= priority_text %>
+      <%= t("tasks.form.#{task.priority}") %>
     </p>
   </div>
 

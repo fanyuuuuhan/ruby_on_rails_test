@@ -4,6 +4,10 @@ zh-TW:
     attributes:
         task: 
           title: "任務名稱"
+          content: "任務描述"
+          status: "任務狀態"
+          due_date: "截止日期"
+          priority: "任務優先順序"
     errors:
       models:
         task:

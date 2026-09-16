@@ -10,6 +10,12 @@
 #  updated_at :datetime         not null
 #
 class Task < ApplicationRecord
+  enum :status, {
+    pending: "pending",
+    in_progress: "in_progress",
+    completed: "completed"
+  }, validate: true
+
   SORT_ORDERS = %i[
     title_asc
     created_at_desc
@@ -91,7 +97,10 @@ class Task < ApplicationRecord
     values = Array(values).reject(&:blank?)
     next all if values.empty?
 
-    priorities = values.filter_map { |value| self.priorities[value.to_s] }
+    priorities = values.filter do |value| 
+      priorities.key?[value.to_s]
+    end
+    
     priorities.present? ? where(priority: priorities) : none
   }
 

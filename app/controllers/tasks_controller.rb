@@ -4,8 +4,9 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = Task.search(params.permit(*Task::SEARCH_SCOPES))
-    @tasks = @tasks.sorted_by(params[:sort_order])
+    @tasks = Task.search(
+      params.permit(*Task::SEARCH_SCOPES)
+    ).sorted_by(params[:sort_order])
   end
 
   def show

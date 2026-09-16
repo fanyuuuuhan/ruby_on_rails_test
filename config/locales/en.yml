@@ -33,6 +33,10 @@ en:
     attributes:
       task:
         title: "Task Title"
+        content: "Task Content"
+        status: "Task Status"
+        due_date: "Due Date"
+        priority: "Task Priority"
     errors:
       models:
         task:

@@ -13,7 +13,8 @@ require "test_helper"
 #
 class TaskTest < ActiveSupport::TestCase
   test "有效的task可建立" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "小組會議報告",
       content: "探討專案進度與問題",
       status: "pending")
@@ -21,7 +22,8 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務標題不能為空" do
-    task = Task.new(
+    task = build(
+      :task,
       title: " ",
       content: "無標題任務",
       status: "pending")
@@ -30,7 +32,8 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務標題不能超過100個字" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "a" * 101,
       content: "標題100字以內",
       status: "pending")
@@ -39,10 +42,12 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務標題不得重複" do
-    Task.create!(
+    create(
+      :task,
       title: "重複任務標題",
       status: "pending")
-    task = Task.new(
+    task = build(
+      :task,
       title: "重複任務標題",
       status: "pending")
 
@@ -51,7 +56,8 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務狀態必須是有效的值" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "任務標題",
       content: "任務內容",
       status: "invalid_status")
@@ -60,7 +66,8 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務狀態不能為空" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "任務標題",
       content: "任務內容",
       status: " ")
@@ -69,14 +76,18 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務狀態預設為 pending" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "任務標題",
       content: "任務內容")
     assert_equal "pending", task.status
   end
 
   test "任務優先順序使用 enum 且預設為 low" do
-    task = Task.new(title: "任務標題", status: "pending")
+    task = build(
+      :task,
+      title: "任務標題",
+      status: "pending")
 
     assert_equal "low", task.priority
     assert_equal "low", Task.priorities[:low]
@@ -84,14 +95,19 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務優先順序只能是有效的 enum 值" do
-    task = Task.new(title: "任務標題", status: "pending", priority: "invalid")
+    task = build(
+      :task,
+      title: "任務標題",
+      status: "pending",
+      priority: "invalid")
 
     assert_not task.valid?
     assert task.errors[:priority].any?
   end
 
   test "任務內容不得超過1000個字" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "任務標題",
       content: "a" * 1001,
       status: "pending")
@@ -100,7 +116,8 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "任務內容可以為空" do
-    task = Task.new(
+    task = build(
+      :task,
       title: "任務標題",
       content: nil,
       status: "pending")
@@ -108,8 +125,16 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以使用字串排序參數" do
-    older_task = Task.create!(title: "較早任務", status: "pending", created_at: 2.days.ago)
-    newer_task = Task.create!(title: "較新任務", status: "pending", created_at: 1.day.ago)
+    older_task = create(
+      :task,
+      title: "較早任務",
+      status: "pending",
+      created_at: 2.days.ago)
+    newer_task = create(
+      :task,
+      title: "較新任務",
+      status: "pending",
+      created_at: 1.day.ago)
 
     result = Task
       .where(id: [ older_task.id, newer_task.id ])
@@ -119,8 +144,16 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以依優先順序排序且忽略未列入白名單的排序參數" do
-    low_task = Task.create!(title: "低優先", status: "pending", priority: "low")
-    high_task = Task.create!(title: "高優先", status: "pending", priority: "high")
+    low_task = create(
+      :task,
+      title: "低優先",
+      status: "pending",
+      priority: "low")
+    high_task = create(
+      :task,
+      title: "高優先",
+      status: "pending",
+      priority: "high")
     scoped_tasks = Task.where(id: [ low_task.id, high_task.id ])
 
     assert_equal [ high_task, low_task ], scoped_tasks.sorted_by("priority_desc").to_a
@@ -129,8 +162,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以精準查詢標題名稱" do
-    matching_task = Task.create!(title: "專案報告", status: "pending")
-    Task.create!(title: "其他任務", status: "pending")
+    matching_task = create(
+      :task,
+      title: "專案報告",
+      status: "pending")
+    create(
+      :task,
+      title: "其他任務",
+      status: "pending")
 
     result = Task.title_eq("專案報告")
 
@@ -138,8 +177,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以模糊查詢標題名稱" do
-    matching_task = Task.create!(title: "專案報告", status: "pending")
-    Task.create!(title: "專案紀錄", status: "pending")
+    matching_task = create(
+      :task,
+      title: "專案報告",
+      status: "pending")
+    create(
+      :task,
+      title: "專案紀錄",
+      status: "pending")
 
     result = Task.title_cont("報告")
 
@@ -147,8 +192,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以查詢狀態" do
-    pending_task = Task.create!(title: "待辦任務", status: "pending")
-    Task.create!(title: "進行中任務", status: "in_progress")
+    pending_task = create(
+      :task,
+      title: "待辦任務",
+      status: "pending")
+    create(
+      :task,
+      title: "進行中任務",
+      status: "in_progress")
 
     result = Task.status_eq("pending")
 
@@ -157,9 +208,18 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以查詢多個狀態" do
-    pending_task = Task.create!(title: "待辦任務", status: "pending")
-    in_progress_task = Task.create!(title: "進行中任務", status: "in_progress")
-    Task.create!(title: "已完成任務", status: "completed")
+    pending_task = create(
+      :task,
+      title: "待辦任務",
+      status: "pending")
+    in_progress_task = create(
+      :task,
+      title: "進行中任務",
+      status: "in_progress")
+    create(
+      :task,
+      title: "已完成任務",
+      status: "completed")
 
     result = Task.status_in([ "pending", "in_progress" ])
 
@@ -169,9 +229,21 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以查詢單一和多個優先順序" do
-    low_task = Task.create!(title: "低優先任務", status: "pending", priority: "low")
-    high_task = Task.create!(title: "高優先任務", status: "pending", priority: "high")
-    medium_task = Task.create!(title: "中優先任務", status: "pending", priority: "medium")
+    low_task = create(
+      :task,
+      title: "低優先任務",
+      status: "pending",
+      priority: "low")
+    high_task = create(
+      :task,
+      title: "高優先任務",
+      status: "pending",
+      priority: "high")
+    medium_task = create(
+      :task,
+      title: "中優先任務",
+      status: "pending",
+      priority: "medium")
     scoped_tasks = Task.where(id: [ low_task.id, high_task.id, medium_task.id ])
 
     assert_equal [ high_task ], Task.priority_eq("high").to_a
@@ -180,8 +252,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以查詢指定截止日期起始之後的任務" do
-    Task.create!(title: "早期任務", status: "pending", due_date: Date.current)
-    matching_task = Task.create!(
+    create(
+      :task,
+      title: "早期任務",
+      status: "pending",
+      due_date: Date.current
+    )
+    matching_task = create(
+      :task,
       title: "符合任務",
       status: "pending",
       due_date: Date.current + 3.days
@@ -193,8 +271,14 @@ class TaskTest < ActiveSupport::TestCase
   end
 
     test "可以查詢指定截止日期之前的任務" do
-    Task.create!(title: "晚期任務", status: "pending", due_date: Date.current + 7.days)
-    matching_task = Task.create!(
+    create(
+      :task,
+      title: "晚期任務",
+      status: "pending",
+      due_date: Date.current + 7.days
+    )
+    matching_task = create(
+      :task,
       title: "符合任務",
       status: "pending",
       due_date: Date.current + 2.days
@@ -206,17 +290,20 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以查詢到指定截止日期範圍內的任務" do
-    before_range = Task.create!(
+    before_range = create(
+      :task,
       title: "截止日期前的任務",
       status: "pending",
       due_date: Date.today
     )
-    in_range = Task.create!(
+    in_range = create(
+      :task,
       title: "範圍內任務",
       status: "pending",
       due_date: Date.today + 2.days
     )
-    after_range = Task.create!(
+    after_range = create(
+      :task,
       title: "截止日期後的任務",
       status: "pending",
       due_date: Date.today + 7.days
@@ -229,13 +316,15 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "可以串接多個 scope" do
-    matching_task = Task.create!(
+    matching_task = create(
+      :task,
       title: "專案報告待處理",
       status: "pending",
       due_date: Date.current + 2.days
     )
 
-    Task.create!(
+    create(
+      :task,
       title: "專案報告已完成",
       status: "completed",
       due_date: Date.current + 2.days
@@ -251,11 +340,13 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "空值不套用篩選" do
-    first_task = Task.create!(
+    first_task = create(
+      :task,
       title: "任務一",
       status: "pending",
     )
-    second_task = Task.create!(
+    second_task = create(
+      :task,
       title: "任務二",
       status: "in_progress",
     )

@@ -16,19 +16,19 @@
       html: { class: "space-y-4 px-5" }
     ) do |form| %>
   <div>
-    <%= form.label :title, t(".form_title") %>
+    <%= form.label :title %>
     <%= form.text_field :title,
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
-    <%= form.label :content, t(".form_content") %>
+    <%= form.label :content %>
     <%= form.text_area :content,
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
-    <%= form.label :status, t(".form_status") %>
+    <%= form.label :status %>
     <%= form.select :status, 
       options_for_select([[t(".pending"), 'pending'],
       [t(".in_progress"), 'in_progress'],
@@ -36,13 +36,13 @@
   </div>
 
   <div>
-    <%= form.label :due_date, t(".form_due_date") %>
+    <%= form.label :due_date %>
     <%= form.date_field :due_date,
         class:"border border-gray-300 rounded-md p-2 w-full" %>
   </div>
 
   <div>
-    <%= form.label :priority, t(".form_priority") %>
+    <%= form.label :priority %>
     <%= form.select :priority, 
       options_for_select([[t(".low"), 'low'],
       [t(".medium"), 'medium'],
