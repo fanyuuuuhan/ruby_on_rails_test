@@ -1,0 +1,204 @@
+* [33mc887224[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/step-22-authentication[m[33m)[m 修正split
+[31m|[m *[34m-[m[34m.[m   [33mca39ebb[m[33m ([m[1;35mrefs/stash[m[33m)[m On feature/step-22-authentication: my local changes
+[31m|[m [32m|[m[33m\[m [34m\[m  
+[31m|[m [32m|[m [33m|[m * [33mf59a256[m untracked files on feature/step-22-authentication: 438dd7c fix: resolve syntax error with mismatched end in tasks index view
+[31m|[m [32m|[m * [33m53e7a08[m index on feature/step-22-authentication: 438dd7c fix: resolve syntax error with mismatched end in tasks index view
+[31m|[m [32m|[m[32m/[m  
+[31m|[m * [33m438dd7c[m[33m ([m[1;31morigin/feature/step-22-authentication[m[33m)[m fix: resolve syntax error with mismatched end in tasks index view
+[31m|[m *   [33m5b8db5e[m merge: resolve conflicts with step-21
+[31m|[m [35m|[m[31m\[m  
+[31m|[m [35m|[m[31m/[m  
+[31m|[m[31m/[m[35m|[m   
+* [35m|[m [33mb7ef274[m[33m ([m[1;31morigin/step-21[m[33m, [m[1;32mstep-21[m[33m)[m style: fix trailing newline in user factory
+* [35m|[m [33m205555f[m CI0
+* [35m|[m [33m836cbe8[m fix: adjust user assignment and remove premature tag associations for step 21
+* [35m|[m [33maed8b10[m fix: remove lingering conflict markers to fix rubocop syntax error
+* [35m|[m   [33m2d1f5e7[m fix: merge step-19-20 into step-21 and resolve conflicts
+[1;31m|[m[1;32m\[m [35m\[m  
+[1;31m|[m [1;32m|[m [35m|[m *   [33m48c62c4[m[33m ([m[1;31morigin/main[m[33m)[m Merge pull request #17 from fanyuuuuhan/step-19-20-pagy-and-tailwind
+[1;31m|[m [1;32m|[m [35m|[m [1;33m|[m[1;32m\[m  
+[1;31m|[m [1;32m|[m [35m|[m[1;32m_[m[1;33m|[m[1;32m/[m  
+[1;31m|[m [1;32m|[m[1;32m/[m[35m|[m [1;33m|[m   
+[1;31m|[m * [35m|[m [1;33m|[m [33m97b4420[m[33m ([m[1;31morigin/step-19-20-pagy-and-tailwind[m[33m, [m[1;32mstep-19-20-pagy-and-tailwind[m[33m)[m 修正
+[1;31m|[m * [35m|[m [1;33m|[m   [33mc1e797c[m 修改step-19-20衝突錯誤
+[1;31m|[m [1;35m|[m[1;33m\[m [35m\[m [1;33m\[m  
+[1;31m|[m [1;35m|[m [1;33m|[m [35m|[m[1;33m/[m  
+[1;31m|[m [1;35m|[m [1;33m|[m[1;33m/[m[35m|[m   
+[1;31m|[m [1;35m|[m * [35m|[m   [33ma302b43[m Merge pull request #13 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [31m|[m[32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [32m\[m [35m\[m   [33mb402d84[m Merge pull request #12 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [33m|[m[34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [34m\[m [32m\[m [35m\[m   [33me8a12e0[m Merge pull request #11 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [35m|[m[36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [36m\[m [34m\[m [32m\[m [35m\[m   [33m7226a81[m Merge pull request #10 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [1;31m|[m[1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m   [33m5e8544d[m Merge pull request #9 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [1;33m|[m[1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m   [33m7e2dd90[m Merge pull request #8 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [1;35m|[m[1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m   [33meff1c4a[m Merge pull request #7 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [31m|[m[32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m   [33m4f0b1e7[m Merge pull request #5 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [33m|[m[34m\[m [32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m * [34m\[m [32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m   [33m309ba0e[m Merge pull request #4 from fanyuuuuhan/topic
+[1;31m|[m [1;35m|[m [35m|[m[36m\[m [34m\[m [32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [36m\[m [34m\[m [32m\[m [35m\[m  
+[1;31m|[m [1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m [35m|[m * [33m481cd21[m[33m ([m[1;31morigin/step-25-26[m[33m, [m[1;32mstep-25-26[m[33m)[m tags與錯誤畫面
+[1;31m|[m [1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m [35m|[m * [33mc58e0af[m[33m ([m[1;31morigin/step-24[m[33m, [m[1;31morigin/step-23[m[33m, [m[1;32mstep-24[m[33m, [m[1;32mstep-23[m[33m)[m 使用者管理頁面
+[1;31m|[m [1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m [35m|[m[35m/[m  
+[1;31m|[m [1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33m7175d83[m signup、login；logout
+[1;31m|[m [1;35m|[m[1;31m_[m[35m|[m[1;31m_[m[36m|[m[1;31m_[m[34m|[m[1;31m_[m[32m|[m[1;31m_[m[1;36m|[m[1;31m_[m[1;34m|[m[1;31m_[m[1;32m|[m[1;31m_[m[36m|[m[1;31m_[m[34m|[m[1;31m_[m[32m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m   
+* [1;35m|[m [35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m [33m7454cbe[m step21多人使用
+[1;35m|[m[1;35m/[m [35m/[m [36m/[m [34m/[m [32m/[m [1;36m/[m [1;34m/[m [1;32m/[m [36m/[m [34m/[m [32m/[m  
+* [35m/[m [36m/[m [34m/[m [32m/[m [1;36m/[m [1;34m/[m [1;32m/[m [36m/[m [34m/[m [32m/[m [33m7ad0b99[m step19+20 pagy&CSS
+[35m|[m[35m/[m [36m/[m [34m/[m [32m/[m [1;36m/[m [1;34m/[m [1;32m/[m [36m/[m [34m/[m [32m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33m99dec48[m[33m ([m[1;32mall-completed-backup[m[33m)[m backup: save all completed features
+[35m|[m [36m|[m[35m_[m[34m|[m[35m_[m[32m|[m[35m_[m[1;36m|[m[35m_[m[1;34m|[m[35m_[m[1;32m|[m[35m_[m[36m|[m[35m_[m[34m|[m[35m_[m[32m|[m[35m/[m  
+[35m|[m[35m/[m[36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m   
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33mf0dff70[m[33m ([m[1;31morigin/topic[m[33m)[m CI v.3
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33mb1a1ed1[m CIv.2
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33m3fa025a[m CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m * [33m9980334[m 完成使用者相關設計與錯誤頁面
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m [32m|[m[32m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m * [33m1ed7047[m CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m * [33m60447bb[m 修改問題
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m * [33me6f8254[m CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m * [33m737b9fc[m 修正CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m * [33m3418116[m 狀態、優先順序排序
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m [34m|[m[34m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33mc60eaee[m 修正indent
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m6408df1[m CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33mbff6cf3[m 修改刪除fetch、更改命名
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m3506dba[m CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m210813f[m 修正task.rb、controllor
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33md648295[m 修正IC
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m166a0b7[m 將排序sort的logic移到task.rb
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m8e947b1[m 修正CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33m636b374[m 修正CI
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m * [33md3012fa[m 任務行內編輯、截止日期設置
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [36m|[m[36m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m * [33m28f3f13[m 更新credentials.yml.enc
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m [1;32m|[m[1;32m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m * [33m7ce7e04[m 更新key
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m [1;34m|[m[1;34m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m * [33m930b51d[m render設置
+[35m|[m [36m|[m [34m|[m [32m|[m [1;36m|[m[1;36m/[m  
+[35m|[m [36m|[m [34m|[m [32m|[m * [33me8f219f[m 字串限制修改為limit
+[35m|[m [36m|[m [34m|[m [32m|[m * [33mcd600e5[m indent統一與CI修正2.0
+[35m|[m [36m|[m [34m|[m [32m|[m * [33m3a9a73c[m indent統一與CI修正
+[35m|[m [36m|[m [34m|[m [32m|[m * [33m16bd5d9[m indent設置統一 修正
+[35m|[m [36m|[m [34m|[m [32m|[m * [33meb77e57[m SQL操作、E2E測試、資料驗證-CI修正
+[35m|[m [36m|[m [34m|[m [32m|[m * [33mf223e8f[m SQL操作、E2E測試、資料驗證
+[35m|[m [36m|[m [34m|[m [32m|[m[32m/[m  
+[35m|[m [36m|[m [34m|[m * [33m1228f0f[m 新增、修改、檢視、刪除任務-修正CI
+[35m|[m [36m|[m [34m|[m * [33m59e9da6[m 新增、修改、檢視、刪除任務
+[35m|[m [36m|[m [34m|[m[34m/[m  
+[35m|[m [36m|[m * [33mdf75caa[m 建立資料庫與建立任務-修正CI-2
+[35m|[m [36m|[m * [33m6af5cc3[m 建立資料庫與建立任務-修正AI
+[35m|[m [36m|[m * [33m8b46959[m 建立資料庫與建立任務
+[35m|[m [36m|[m[36m/[m  
+[35m|[m [36m|[m * [33md7e30e6[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 20
+[35m|[m [36m|[m * [33m378097a[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 20 start
+[35m|[m [36m|[m * [33mf19ce10[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 19
+[35m|[m [36m|[m * [33md609f52[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 19 start
+[35m|[m [36m|[m * [33mce63cde[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 18
+[35m|[m [36m|[m * [33m8f14366[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 18 start
+[35m|[m [36m|[m * [33m640c905[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 17
+[35m|[m [36m|[m * [33mf43e99a[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 17 start
+[35m|[m [36m|[m * [33m10fb21a[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 16
+[35m|[m [36m|[m * [33mbef9451[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 16 start
+[35m|[m [36m|[m * [33m8fa7b1c[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 15
+[35m|[m [36m|[m * [33m3552756[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 15 start
+[35m|[m [36m|[m * [33mbc53246[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 14
+[35m|[m [36m|[m * [33m4761c39[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 14 start
+[35m|[m [36m|[m * [33me71cc63[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 13
+[35m|[m [36m|[m * [33md6fb8be[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 13 start
+[35m|[m [36m|[m * [33m2f00f4e[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 12
+[35m|[m [36m|[m * [33m6f21b73[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 12 start
+[35m|[m [36m|[m * [33m607bce9[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 11
+[35m|[m [36m|[m * [33md48f6d4[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 11 start
+[35m|[m [36m|[m * [33m31e9e60[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 10
+[35m|[m [36m|[m * [33m245619d[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 10 start
+[35m|[m [36m|[m * [33mdf3ffdf[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 9
+[35m|[m [36m|[m * [33m9587a6e[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 9 start
+[35m|[m [36m|[m * [33m6f11f00[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 8
+[35m|[m [36m|[m * [33mc3ec9ba[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 8 start
+[35m|[m [36m|[m * [33m8ae15d5[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 7
+[35m|[m [36m|[m * [33mdd75733[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 7 start
+[35m|[m [36m|[m * [33m4810789[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 6
+[35m|[m [36m|[m * [33mfe7eb07[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 6 start
+[35m|[m [36m|[m * [33m25d1458[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 5
+[35m|[m [36m|[m * [33m77cbf04[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 5 start
+[35m|[m [36m|[m * [33mb1a538e[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 4
+[35m|[m [36m|[m * [33m0eae262[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 4 start
+[35m|[m [36m|[m * [33m8b0b1b0[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 3
+[35m|[m [36m|[m * [33m3a24b58[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 3 start
+[35m|[m [36m|[m * [33m30fb615[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 2
+[35m|[m [36m|[m * [33m771bb8d[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 2 start
+[35m|[m [36m|[m * [33mf341fcb[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 1
+[35m|[m [36m|[m * [33m05c0a26[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - turn 1 start
+[35m|[m [36m|[m * [33m91df5eb[m Agent host session a71ccec6-2f01-423f-9635-d2abd5c64dd6 - baseline checkpoint
+[35m|[m [36m|[m * [33mf1e9f01[m Agent host session 367dced5-e74e-4180-be77-76839a643be5 - turn 2
+[35m|[m [36m|[m * [33m7919812[m Agent host session 367dced5-e74e-4180-be77-76839a643be5 - turn 2 start
+[35m|[m [36m|[m * [33m02d31b6[m Agent host session 367dced5-e74e-4180-be77-76839a643be5 - turn 1
+[35m|[m [36m|[m * [33m1fadda8[m Agent host session 367dced5-e74e-4180-be77-76839a643be5 - turn 1 start
+[35m|[m [36m|[m * [33mf4875be[m Agent host session 367dced5-e74e-4180-be77-76839a643be5 - baseline checkpoint
+[35m|[m [36m|[m * [33mbe3c85b[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 26
+[35m|[m [36m|[m * [33m1170494[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 26 start
+[35m|[m [36m|[m * [33m6341ecb[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 25
+[35m|[m [36m|[m * [33m0622a98[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 25 start
+[35m|[m [36m|[m * [33m1513f04[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 24
+[35m|[m [36m|[m * [33mb6701ba[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 24 start
+[35m|[m [36m|[m * [33m08b375c[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 23
+[35m|[m [36m|[m * [33m5702c13[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 23 start
+[35m|[m [36m|[m * [33m94556df[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 22
+[35m|[m [36m|[m * [33m0f3dd5d[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 22 start
+[35m|[m [36m|[m * [33m1ccce88[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 21
+[35m|[m [36m|[m * [33mfdb4cea[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 21 start
+[35m|[m [36m|[m * [33mb4fc653[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 20
+[35m|[m [36m|[m * [33mf7dfdfe[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 20 start
+[35m|[m [36m|[m * [33mb79c710[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 19
+[35m|[m [36m|[m * [33ma402df3[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 19 start
+[35m|[m [36m|[m * [33m76ccbbb[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 18
+[35m|[m [36m|[m * [33m717de2e[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 18 start
+[35m|[m [36m|[m * [33m619c893[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 17
+[35m|[m [36m|[m * [33ma306c0c[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 17 start
+[35m|[m [36m|[m * [33me7261cc[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 16
+[35m|[m [36m|[m * [33m913ab47[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 16 start
+[35m|[m [36m|[m * [33m2207c9e[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 15
+[35m|[m [36m|[m * [33mf984cc5[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 15 start
+[35m|[m [36m|[m * [33m0c452e3[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 14
+[35m|[m [36m|[m * [33mb7d83c2[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 14 start
+[35m|[m [36m|[m * [33m3ff278a[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 13
+[35m|[m [36m|[m * [33m1ed5312[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 13 start
+[35m|[m [36m|[m * [33m659b244[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 12
+[35m|[m [36m|[m * [33me6b8e8c[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 12 start
+[35m|[m [36m|[m * [33mfb235b1[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 11
+[35m|[m [36m|[m * [33mb0dc5e8[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 11 start
+[35m|[m [36m|[m * [33md736345[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 10
+[35m|[m [36m|[m * [33m5f087be[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 10 start
+[35m|[m [36m|[m * [33m5020107[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 9
+[35m|[m [36m|[m * [33m62be5cf[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 9 start
+[35m|[m [36m|[m * [33m2e00b4d[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 8
+[35m|[m [36m|[m * [33m012e7b2[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 8 start
+[35m|[m [36m|[m * [33m27dcc93[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 7
+[35m|[m [36m|[m * [33mc8c2ca4[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 7 start
+[35m|[m [36m|[m * [33mae3c28a[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 6
+[35m|[m [36m|[m * [33meedd25d[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 6 start
+[35m|[m [36m|[m * [33m19c2b13[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 5
+[35m|[m [36m|[m * [33m44888c6[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 5 start
+[35m|[m [36m|[m * [33m50ecf22[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 4
+[35m|[m [36m|[m * [33maf4aae5[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 4 start
+[35m|[m [36m|[m * [33m8c126ea[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 3
+[35m|[m [36m|[m * [33m90ba1b1[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 3 start
+[35m|[m [36m|[m * [33maf0c36a[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 2
+[35m|[m [36m|[m * [33m97c7647[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 2 start
+[35m|[m [36m|[m * [33m5433b2e[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 1
+[35m|[m [36m|[m * [33md87e506[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - turn 1 start
+[35m|[m [36m|[m * [33m53c3978[m Agent host session 5eb63dbd-970d-458f-b3b2-e1e3425f61f8 - baseline checkpoint
+[35m|[m [36m|[m * [33mce61354[m[33m ([m[1;32mtopic-2[m[33m)[m task model與migration
+[35m|[m [36m|[m * [33mbdda950[m migration撰寫、model建立與測試
+[35m|[m [36m|[m[36m/[m  
+[35m|[m * [33m040b544[m 完成至步驟4
+[35m|[m[35m/[m  
+* [33mc9b8fe7[m[33m ([m[1;32mtopic[m[33m, [m[1;32mmain[m[33m)[m Initail commit :Setup Rails app with TailwindCSS, PostgreSQL, Overmind, and docs
