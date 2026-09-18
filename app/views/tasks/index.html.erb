@@ -46,6 +46,7 @@
         <%== @pagy.series_nav(slots: 7) if @pagy.pages > 1 %>
       </div>
     </div>
+
   <% else %>
     <p><%= t(".empty") %></p>
   <% end %>
@@ -54,6 +55,7 @@
       html: { class: "px-5 text-sm" },
       method: :get, local: true do |form| %>
     <div class="flex flex-col gap-2">
+    <div class="flex flex-col items-center gap-2">
       <%= form.select :sort_order,
         options_for_select(
           [[t(".sort_created_at_asc"), "created_at_asc"], [t(".sort_created_at_desc"), "created_at_desc"], [t(".sort_title_asc"), "title_asc"], [t(".sort_due_date_asc"), "due_date_asc"], [t(".sort_due_date_desc"), "due_date_desc"], [t(".sort_priority_asc"), "priority_asc"], [t(".sort_priority_desc"), "priority_desc"]],
@@ -108,6 +110,9 @@
       class: "w-auto text-center px-5 py-2 items-center justify-center border border-gray-500 hover:bg-indigo-400 rounded hover:text-white" %>
       <%= link_to t(".signup"), signup_path,
       class: "w-auto text-center px-5 py-2 items-center justify-center border border-gray-500 hover:bg-indigo-400 rounded hover:text-white" %>
+    </div>
+  <% end %>
+      <%= form.submit t(".search_button"), class: "bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>
     </div>
   <% end %>
 </div>

@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   # 失敗回到new
   def create
     @task = current_user.tasks.build(task_params)
-
+    @task.user ||= User.first || current_user
     if @task.save
       redirect_to tasks_path, notice: t("tasks.controller.create_success")
     else
@@ -70,5 +70,6 @@ class TasksController < ApplicationController
 
   def set_task
     @task = current_user.tasks.find(params[:id])
+    params.require(:task).permit(:title, :content, :status, :due_date, :priority)
   end
 end
