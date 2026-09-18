@@ -1,0 +1,167 @@
+zh-TW:
+  hello: "你好"
+  activerecord:
+    attributes:
+        task: 
+          title: "任務名稱"
+          content: "任務描述"
+          status: "任務狀態"
+          due_date: "截止日期"
+          priority: "任務優先順序"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "不能為空白"
+            status:
+              blank: "不能為空白"
+        user:
+          attributes:
+            base:
+              cannot_delete_last_admin: "無法刪除最後一位管理員"
+              cannot_remove_last_admin: "無法將最後一位管理員移除管理員權限"
+  tasks:
+    index:
+      title: "任務列表"
+      new: "+新增任務"
+      edit: "編輯"
+      delete: "刪除"
+      delete_check: "確定要刪除嗎？"
+      empty: "目前沒有任務"
+      due_date: "截止日期"
+      sort: "選擇排序方式"
+      sort_created_at_asc: "依建立時間排序(由舊到新)"
+      sort_created_at_desc: "依建立時間排序(由新到舊)"
+      sort_title_asc: "依任務名稱排序(由A到Z)"
+      sort_due_date_asc: "依截止日期排序(由早到晚)"
+      sort_due_date_desc: "依截止日期排序(由晚到早)"
+      sort_priority_asc: "依優先順序排序(低到高)"
+      sort_priority_desc: "依優先順序排序(高到低)"
+      search_title: "搜尋任務名稱"
+      search_status: "搜尋任務狀態"
+      search_priority: "搜尋任務優先順序"
+      search_input_title: "請輸入任務名稱"
+      search_button: "查詢"
+      pending: "待處理"
+      in_progress: "進行中"
+      completed: "已完成"
+      search_due_date_start: "截止日期(起)"
+      search_due_date_end: "截止日期(迄)"
+      form_priority: "任務優先順序"
+      low: "低"
+      medium: "中"
+      high: "高"
+      login_prompt: "登入"
+      login: "登入"
+      signup: "註冊"
+      logout: "登出"
+      admin_title: "管理者頁面"
+      search_by_tag: "搜尋標籤"
+      search_input_by_tag: "請輸入標籤名稱"
+    new:
+      new_title: "新增任務"
+      back: "回到任務列表"
+    form:
+      error: "請修正以下錯誤"
+      form_title: "任務名稱"
+      form_content: "任務描述"
+      form_status: "任務狀態"
+      add_task: "新增任務"
+      update_task: "更新任務"
+      pending: "待處理"
+      in_progress: "進行中"
+      completed: "已完成"
+      form_due_date: "截止日期"
+      form_priority: "任務優先順序"
+      low: "低"
+      medium: "中"
+      high: "高"
+      tags: "標籤"
+      tags_placeholder: "請輸入標籤名稱，並使用逗號分隔"
+    edit:
+      edit_title: "編輯任務"
+      back: "回到任務列表"
+    show:
+      show_back: "回到任務列表"
+      show_status: "任務狀態"
+    controller:
+      create_success: "任務建立成功"
+      create_fail: "任務建立失敗"
+      update_success: "任務更新成功"
+      update_fail: "任務更新失敗"
+      destroy_success: "任務刪除成功"
+  users:
+    new:
+      signup: "註冊"
+      name: "姓名"
+      email: "電子郵件"
+      password: "密碼"
+      password_confirmation: "確認密碼"
+      error: "請修正以下錯誤"
+      back: "回到首頁"
+      login: "登入頁面"
+      account: "已經有帳號了嗎？"
+    controller:
+      create_success: "使用者註冊成功"
+      create_fail: "使用者註冊失敗，請檢查輸入資料"
+  sessions:
+    new:
+      login: "登入"
+      email: "電子郵件"
+      password: "密碼"
+      no_account: "沒有帳號？"
+      signup: "註冊"
+      back: "回到首頁"
+    controller:
+        login_success: "登入成功"
+        login_fail: "登入失敗，請檢查電子郵件或密碼"
+        logout_success: "登出成功"
+  admin:
+    users:
+      index:
+        title: "使用者列表"
+        username: "使用者姓名"
+        email: "電子郵件"
+        edit: "編輯"
+        delete: "刪除"
+        edit_button: "✎"
+        admin: "是否為管理員"
+        no_users: "目前沒有使用者"
+        yes: "是"
+        no: "否"
+        delete_button: "🗑️"
+        users_count: "使用者數量"
+        new: "+新增使用者"
+        back: "回首面"
+      show:
+        title: "使用者詳細資料"
+        username: "使用者姓名"
+        email: "電子郵件"
+        admin: "是否為管理員"
+        yes: "是"
+        no: "否"
+        no_tasks: "此使用者目前沒有任務"
+        back: "回到使用者列表"
+      new:
+        title: "新增使用者"
+        back: "取消新增"
+      form:
+        username: "使用者姓名"
+        email: "電子郵件"
+        password: "密碼"
+        password_confirmation: "確認密碼"
+        admin: "是否為管理員"
+        submit: "送出"
+      edit:
+        title: "編輯使用者"
+        username: "更新使用者姓名"
+        email: "更新電子郵件"
+        password: "更新密碼"
+        password_confirmation: "確認更新密碼"
+        admin: "是否為管理員"
+        submit: "更新使用者資訊"
+        back: "取消編輯"
+      destroy:
+        cannot_delete_self: "無法刪除目前登入的帳號"
+        deleted_success: "使用者刪除成功"
