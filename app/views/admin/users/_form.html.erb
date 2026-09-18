@@ -1,0 +1,44 @@
+<div>
+    <%= form_with model: [:admin, user] do |form| %>
+        <div class="flex flex-col gap-5 my-5">
+            <div class="flex flex-col gap-2">
+                <%= form.label :name, t('.username'), class: "font-bold" %>
+                <%= form.text_field :name, class: "border border-gray-300 rounded px-2 py-1" %>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <%= form.label :email, t('.email'), class: "font-bold" %>
+                <%= form.email_field :email, class: "border border-gray-300 rounded px-2 py-1" %>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <%= form.label :password, t('.password'), class: "font-bold" %>
+                <%= form.password_field :password, class: "border border-gray-300 rounded px-2 py-1" %>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <%= form.label :password_confirmation, t('.password_confirmation'), class: "font-bold" %>
+                <%= form.password_field :password_confirmation, class: "border border-gray-300 rounded px-2 py-1" %>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <%= form.check_box :admin %>
+                <%= form.label :admin, t('.admin'), class: "font-bold" %>
+            </div>
+
+            <% if user.errors.any? %>
+                <div class="text-red-600">
+                    <ul>
+                        <% user.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div>
+                <%= form.submit t('.submit'), class: "px-5 py-2 bg-blue-100 hover:bg-blue-300 font-bold rounded" %>
+            </div>
+        </div>
+    <% end %>
+</div>

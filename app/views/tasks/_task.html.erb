@@ -3,7 +3,9 @@
     <%= link_to task.title, task_path(task),
         data: { turbo_frame: "_top" },
         class: "font-bold" %>
-    <p><%= task.content %></p>
+    <p class="text-sm text-gray-500">
+      <%= task.content %>
+    </p>
 
     <p><%= t("tasks.show.show_status") %>: 
       <%= t("tasks.form.#{task.status}") %>
@@ -12,6 +14,14 @@
     <p><%= t("tasks.form.form_priority") %>:
       <%= t("tasks.form.#{task.priority}") %>
     </p>
+  </div>
+
+  <div class="flex gap-2">
+    <% task.tags.each do |tag| %>
+      <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded">
+        <%= tag.name %>
+      </span>
+    <% end %>
   </div>
 
   <%= link_to edit_task_path(task),
