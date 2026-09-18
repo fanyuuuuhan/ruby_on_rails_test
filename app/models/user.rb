@@ -1,4 +1,4 @@
-require 'bcrypt'
+require "bcrypt"
 
 class User < ApplicationRecord
     has_many :tasks, dependent: :destroy
@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
     attr_reader :password
     attr_accessor :password_confirmation
-    
+
     validates :email, presence: true, uniqueness: true
     validates :password,
         presence: true,

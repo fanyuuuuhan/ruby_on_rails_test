@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = 
+    @tasks =
     if current_user
       current_user.tasks.includes(:tags)
                         .search(params.permit(*Task::SEARCH_SCOPES))

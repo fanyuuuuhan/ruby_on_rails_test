@@ -130,7 +130,6 @@ zh-TW:
         no_users: "目前沒有使用者"
         yes: "是"
         no: "否"
-        no_users: "目前沒有使用者"
         delete_button: "🗑️"
         users_count: "使用者數量"
         new: "+新增使用者"
