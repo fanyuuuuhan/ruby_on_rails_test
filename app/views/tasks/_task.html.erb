@@ -1,0 +1,23 @@
+<div class="flex items-center gap-3">
+  <div class="flex gap-10 items-center">
+    <%= link_to task.title, task_path(task),
+        data: { turbo_frame: "_top" },
+        class: "font-bold" %>
+    <p><%= task.content %></p>
+
+    <p><%= t("tasks.show.show_status") %>: 
+      <%= t("tasks.form.#{task.status}") %>
+    </p>
+
+    <p><%= t("tasks.form.form_priority") %>:
+      <%= t("tasks.form.#{task.priority}") %>
+    </p>
+  </div>
+
+  <%= link_to edit_task_path(task),
+      aria: { label: t("tasks.index.edit") },
+      title: t("tasks.index.edit"),
+      class: "p-2 hover:bg-gray-100 rounded" do %>
+    ✎
+  <% end %>
+</div>
