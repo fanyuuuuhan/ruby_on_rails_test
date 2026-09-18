@@ -120,7 +120,7 @@ class Task < ApplicationRecord
   end
 
   def tag_names=(names)
-    self.tags = names.to_s.split(/[,，]/).map do |name|
+    self.tags = Array(names).reject(&:blank?).map do |name|
       Tag.find_or_create_by(name: name.strip)
     end
   end
