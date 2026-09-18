@@ -21,6 +21,7 @@ class TasksController < ApplicationController
   # 失敗回到new
   def create
     @task = Task.new(task_params)
+    @task.user ||= User.first || current_user
     if @task.save
       redirect_to tasks_path, notice: t("tasks.controller.create_success")
     else
