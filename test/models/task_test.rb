@@ -294,21 +294,21 @@ class TaskTest < ActiveSupport::TestCase
       :task,
       title: "截止日期前的任務",
       status: "pending",
-      due_date: Date.today
+      due_date: Date.current
     )
     in_range = create(
       :task,
       title: "範圍內任務",
       status: "pending",
-      due_date: Date.today + 2.days
+      due_date: Date.current + 2.days
     )
     after_range = create(
       :task,
       title: "截止日期後的任務",
       status: "pending",
-      due_date: Date.today + 7.days
+      due_date: Date.current + 7.days
     )
-    result = Task.due_date_gteq(Date.today + 1.day).due_date_lteq(Date.today + 6.days)
+    result = Task.due_date_gteq(Date.current + 1.day).due_date_lteq(Date.current + 6.days)
 
     assert_equal [ in_range ], result.to_a
     assert_not_includes result.to_a, before_range
