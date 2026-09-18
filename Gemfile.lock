@@ -386,10 +386,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotaterb
-<<<<<<< HEAD
   bcrypt (~> 3.1.7)
-=======
->>>>>>> origin/main
   bootsnap
   brakeman
   bundler-audit
