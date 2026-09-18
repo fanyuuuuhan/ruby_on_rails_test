@@ -10,13 +10,10 @@
 #  updated_at :datetime         not null
 #
 class Task < ApplicationRecord
-<<<<<<< HEAD
   belongs_to :user
   has_many :task_tags, dependent: :destroy
   has_many :tags, through: :task_tags
 
-=======
->>>>>>> origin/step-19-20-pagy-and-tailwind
   enum :status, {
     pending: "pending",
     in_progress: "in_progress",
@@ -56,10 +53,7 @@ class Task < ApplicationRecord
     due_date_lteq
     priority_eq
     priority_in
-<<<<<<< HEAD
     tag_names
-=======
->>>>>>> origin/step-19-20-pagy-and-tailwind
   ].freeze
 
   enum :priority, {
