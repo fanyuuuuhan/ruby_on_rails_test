@@ -43,6 +43,11 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+        user:
+          attributes:
+            base:
+              cannot_delete_last_admin: "Cannot delete the last admin"
+              cannot_remove_last_admin: "Cannot remove the last admin's admin privileges"
   tasks:
     index:
       title: "Task List"
@@ -74,10 +79,17 @@ en:
       low: "Low"
       medium: "Medium"
       high: "High"
+      login: "Log In"
+      signup: "Sign Up"
+      logout: "Log Out"
+      admin_title: "Admin Page"
+      search_by_tag: "Search by Tag"
+      search_input_by_tag: "Please enter tag name"
     new:
       new_title: "New Task"
       back: "Back to Task List"
     form:
+      error: "Please fix the following errors"
       form_title: "Task Title"
       form_content: "Task Content"
       form_status: "Task Status"
@@ -91,6 +103,8 @@ en:
       low: "Low"
       medium: "Medium"
       high: "High"
+      tag: "Tag"
+      tag_placeholder: "Please enter tag name"
     edit:
       edit_title: "Edit Task"
       back: "Back to Task List"
@@ -103,3 +117,77 @@ en:
       update_success: "Task updated successfully"
       update_fail: "Task update failed"
       destroy_success: "Task deleted successfully"
+  users:
+    new:
+      signup_title: "Sign Up"
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      password_confirmation: "Password Confirmation"
+      back: "Back to login page"
+      error: "Please fix the following errors"
+      login: "Log In"
+      account: "Already have an account?"
+    controller:
+      create_success: "User created successfully"
+      create_fail: "User creation failed"
+  sessions:
+    new:
+      login: "Log In"
+      email: "Email"
+      password: "Password"
+      no_account: "Don't have an account?"
+      signup: "Sign Up"
+      back: "Back to signup page"
+    controller:
+      login_success: "Login successful"
+      login_fail: "Login failed, please check your email or password"
+      logout_success: "Logout successful"
+  admin:
+    users:
+      index:
+        title: "User List"
+        username: "Username"
+        email: "Email"
+        edit: "Edit User"
+        delete: "Delete User"
+        edit_button: "✎"
+        admin: "Admin?"
+        no_users: "No users here"
+        yes: "Yes"
+        no: "No"
+        delete_button: "🗑️"
+        user_count: "User Count"
+        new: "+Add User"
+        back: "Back to home Page"
+      show:
+        title: "User Details"
+        username: "Username"
+        email: "Email"
+        admin: "Admin?"
+        yes: "Yes"
+        no: "No"
+        no_tasks: "No tasks here"
+        back: "Back to User List"
+      new:
+        title: "Add User"
+        back: "Back to User List"
+      form:
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        admin: "Admin?"
+        submit: "Submit"
+      edit:
+        title: "Edit User"
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        admin: "Admin?"
+        submit: "Submit"
+        back: "Cancel Edit"
+      destroy:
+        cannot_delete_self: "Cannot delete the currently logged-in user"
+        deleted_success: "User deleted successfully"

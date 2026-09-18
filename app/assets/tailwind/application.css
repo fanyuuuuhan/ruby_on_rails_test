@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.pagies {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 5px
+}
+
+.pagies a{
+    background-color: #d4e3ff;
+    padding: 5px 10px;
+    margin: 0 5px;
+}
+
+.pagies a[aria-current="page"]{
+    background-color: #728ada;
+    color: white;
+    padding: 5px 10px;
+}

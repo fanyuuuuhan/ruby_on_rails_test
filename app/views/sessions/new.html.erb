@@ -1,0 +1,27 @@
+<div class="w-auto flex flex-col justify-center gap-5 ">
+  <h1 class="font-bold text-4xl"><%=t(".login")%></h1>
+  <%= form_with url: login_path, method: :post, local: true do |form| %>
+    <div class="flex flex-col gap-5">
+      <div>
+        <%= form.label :email, t(".email") %>
+        <%= form.email_field :email, class: "border border-gray-300 rounded-md p-2 w-full" %>
+      </div>
+
+      <div>
+        <%= form.label :password, t(".password") %>
+        <%= form.password_field :password, class: "border border-gray-300 rounded-md p-2 w-full" %>
+      </div>
+
+      <div>
+        <%= form.submit t(".login"), class: "bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="flex flex-col gap-5">
+    <div class="flex gap-2">
+      <p class="text-sm text-gray-600"><%= t(".no_account") %></p>
+      <%= link_to t(".signup"), signup_path, class: "text-sm text-blue-600 hover:text-blue-800" %>
+    </div>
+    <%= link_to t(".back"), tasks_path, class: "w-auto flex justify-center text-md bg-gray-200 text-black my-2 hover:bg-gray-300 font-bold py-2 px-4 rounded" %>
+  </div>
+</div>

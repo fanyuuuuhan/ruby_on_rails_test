@@ -1,9 +1,19 @@
 require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
+  setup do
+    @user = create(:user, password: "password123", password_confirmation: "password123")
+    visit login_url
+    fill_in "email", with: @user.email
+    fill_in "password", with: "password123"
+    find('input[type="submit"]').click
+
+    assert_current_path tasks_path
+  end
+
   test "建立新增任務" do
     visit tasks_url
-    click_on "新增任務"
+    click_on "+新增任務" # 加上加號以匹配畫面上的文字
     fill_in "任務名稱", with: "任務標題"
     fill_in "任務描述", with: "任務內容說明"
     select "待處理", from: "任務狀態"
@@ -12,7 +22,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "編輯任務" do
-    task = create(:task)
+    task = create(:task, user: @user)
     visit tasks_url
     within("turbo-frame##{dom_id(task)}") do
       click_on "編輯"
@@ -26,7 +36,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "刪除任務" do
-    task = create(:task)
+    task = create(:task, user: @user)
     visit tasks_url
     within("li", text: task.title) do
       accept_confirm do
@@ -38,7 +48,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "查看任務" do
-    task = create(:task)
+    task = create(:task, user: @user)
     visit task_url(task)
     assert_text task.title
     assert_text task.content
@@ -48,11 +58,13 @@ class TasksTest < ApplicationSystemTestCase
   test "依任務名稱查詢" do
     matching_task = create(
       :task,
+      user: @user,
       title: "任務標題A",
       status: "pending"
     )
     create(
       :task,
+      user: @user,
       title: "任務標題B",
       status: "pending"
     )
@@ -66,11 +78,13 @@ class TasksTest < ApplicationSystemTestCase
   test "依任務狀態查詢" do
     matching_task = create(
       :task,
+      user: @user,
       title: "待處理任務",
       status: "pending"
     )
     create(
       :task,
+      user: @user,
       title: "已完成任務",
       status: "completed"
     )
@@ -87,12 +101,14 @@ class TasksTest < ApplicationSystemTestCase
 
     matching_task = create(
       :task,
+      user: @user,
       title: "時間內任務",
       status: "pending",
       due_date: matching_due_date
     )
     create(
       :task,
+      user: @user,
       title: "時間外任務",
       status: "pending",
       due_date: outside_due_date
