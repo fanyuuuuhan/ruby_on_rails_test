@@ -13,6 +13,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.admin = params[:user][:admin] if params[:user].key?(:admin)
     if @user.save
       redirect_to admin_users_path
     else
@@ -28,6 +29,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.admin = params[:user][:admin] if params[:user].key?(:admin)
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
@@ -60,6 +63,6 @@ class Admin::UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
-      :admin)
+    )
   end
 end
