@@ -19,6 +19,8 @@ class TasksTest < ApplicationSystemTestCase
       fill_in "task_title", with: task_title
       fill_in "task_content", with: "任務內容說明"
       select "待處理", from: "task_status"
+      fill_in "task_due_date", with: 1.month.from_now.strftime("%Y-%m-%d")
+      select "低", from: "task_priority"
       click_button "新增任務"
     end
     assert_current_path tasks_path, wait: 5
@@ -26,15 +28,13 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "編輯任務" do
-    task = create(:task)
     task = create(:task, user: @user)
     updated_title = "更新後的任務標題#{SecureRandom.hex(4)}"
     visit edit_task_path(task)
-    within("form") do
-      find("#task_title").set(updated_title)
-      find("#task_content").set("更新後的任務內容說明")
+    within("turbo-frame##{dom_id(task)}") do
+      fill_in "task_title", with: updated_title
+      fill_in "task_content", with: "更新後的任務內容說明"
       select "進行中", from: "task_status"
-      assert_field "task_title", with: updated_title
       click_button "更新任務"
     end
 
