@@ -53,7 +53,6 @@ class Task < ApplicationRecord
     due_date_lteq
     priority_eq
     priority_in
-    tag_names
   ].freeze
 
   enum :priority, {
@@ -109,10 +108,6 @@ class Task < ApplicationRecord
     end
 
     valid_priorities.present? ? where(priority: valid_priorities) : none
-  }
-  scope :tag_names, ->(input) {
-    names = input.to_s.split("，").map(&:strip).compact_blank
-    names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
   }
 
   validates :title, presence: true,
