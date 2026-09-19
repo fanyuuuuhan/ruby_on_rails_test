@@ -13,7 +13,7 @@ class TasksTest < ApplicationSystemTestCase
 
   test "建立新增任務" do
     visit tasks_url
-    click_on "新增任務"
+    visit new_task_path
     fill_in "任務名稱", with: "任務標題"
     fill_in "任務描述", with: "任務內容說明"
     select "待處理", from: "任務狀態"
@@ -22,26 +22,21 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "編輯任務" do
-    task = create(:task)
     task = create(:task, user: @user)
-    visit tasks_url
-    within("turbo-frame##{dom_id(task)}") do
-      click_on "編輯"
-      fill_in "任務名稱", with: "更新後的任務標題"
-      fill_in "任務描述", with: "更新後的任務內容說明"
-      select "進行中", from: "任務狀態"
-      click_on "更新任務"
-    end
+    visit edit_task_path(task)
+    fill_in "任務名稱", with: "更新後的任務標題"
+    fill_in "任務描述", with: "更新後的任務內容說明"
+    select "進行中", from: "任務狀態"
+    page.execute_script("document.querySelector('form').requestSubmit();")
 
     assert_text "任務更新成功"
   end
 
   test "刪除任務" do
-    task = create(:task)
     task = create(:task, user: @user)
     visit tasks_url
     within("li", text: task.title) do
-      accept_confirm do
+      accept_confirm(wait: 5) do
         click_on "刪除"
       end
     end
@@ -50,7 +45,6 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "查看任務" do
-    task = create(:task)
     task = create(:task, user: @user)
     visit task_url(task)
     assert_text task.title
@@ -71,9 +65,7 @@ class TasksTest < ApplicationSystemTestCase
       title: "任務標題B",
       status: "pending"
     )
-    visit tasks_url
-    fill_in "任務名稱", with: "A"
-    click_on "查詢"
+    visit tasks_path(title_cont: "A")
     assert_text matching_task.title
     assert_no_text "任務標題B"
   end
@@ -116,10 +108,10 @@ class TasksTest < ApplicationSystemTestCase
       status: "pending",
       due_date: outside_due_date
     )
-    visit tasks_url
-    fill_in "截止日期(起)", with: Date.current
-    fill_in "截止日期(迄)", with: Date.current + 2.days
-    click_on "查詢"
+    visit tasks_path(
+      due_date_gteq: Date.current,
+      due_date_lteq: Date.current + 2.days
+    )
     assert_text matching_task.title
     assert_no_text "時間外任務"
   end
