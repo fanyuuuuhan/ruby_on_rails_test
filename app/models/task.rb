@@ -111,7 +111,7 @@ class Task < ApplicationRecord
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
   scope :tag_names, ->(input) {
-    names = input.to_s.split("，").map(&:strip).reject(&:blank?)
+    names = input.to_s.split("，").map(&:strip).compact_blank
     names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
   }
 

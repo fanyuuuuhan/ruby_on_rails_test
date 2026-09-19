@@ -29,3 +29,5 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+app/helpers/sessions_helper.rb
+app/helpers/users_helper.rb

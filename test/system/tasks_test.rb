@@ -17,7 +17,8 @@ class TasksTest < ApplicationSystemTestCase
     fill_in "任務名稱", with: "任務標題"
     fill_in "任務描述", with: "任務內容說明"
     select "待處理", from: "任務狀態"
-    click_on "新增任務"
+    page.execute_script("document.querySelector('form').submit();")
+    assert_current_path tasks_path, wait: 5
     assert_text "任務建立成功"
   end
 
