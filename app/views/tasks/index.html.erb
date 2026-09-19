@@ -51,7 +51,7 @@
         method: :get, local: true do |form| %>
       <div class="flex flex-col items-center gap-2">
         <%= form.select :sort_order,
-            options_for_select(task_option_gor_select, params[:sort_order]),
+            options_for_select(task_options_for_select, params[:sort_order]),
             {prompt: t(".sort")},
             { onchange: "this.form.submit();" } %>
 
