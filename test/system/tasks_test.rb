@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
+  setup do
+    @user = create(:user)
+  end
+
   test "建立新增任務" do
     visit tasks_url
     click_on "新增任務"

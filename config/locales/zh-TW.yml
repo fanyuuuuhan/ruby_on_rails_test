@@ -16,6 +16,9 @@ zh-TW:
               blank: "不能為空白"
             status:
               blank: "不能為空白"
+      messages:
+        record_invalid: "驗證失敗: %{errors}"
+        required: "不能為空白"
   tasks:
     index:
       title: "任務列表"

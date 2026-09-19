@@ -4,5 +4,6 @@ FactoryBot.define do
     content { Faker::Lorem.paragraph }
     status { "pending" }
     due_date { Faker::Date.between(from: Date.today, to: 1.year.from_now) }
+    user { association :user }
   end
 end
