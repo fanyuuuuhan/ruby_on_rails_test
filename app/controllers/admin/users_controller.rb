@@ -13,7 +13,6 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.admin = params[:user][:admin] if params[:user].key?(:admin)
     if @user.save
       redirect_to admin_users_path
     else
