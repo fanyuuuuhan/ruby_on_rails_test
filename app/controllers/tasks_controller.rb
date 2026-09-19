@@ -1,12 +1,21 @@
 class TasksController < ApplicationController
+  before_action :require_login, except: :index
+
   # 在顯示、編輯、更新和刪除操作之前，先設定好 @task
   # 避免重複的程式碼
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = Task.search(
-      params.permit(*Task::SEARCH_SCOPES)
-    ).sorted_by(params[:sort_order])
+    @tasks =
+    if current_user
+      filters = params.permit(*Task::SEARCH_SCOPES).to_h
+      current_user.tasks.search(filters)
+                        .sorted_by(params[:sort_order])
+    else
+      Task.none
+    end
+
+    @pagy, @tasks = pagy(:offset, @tasks, limit: 5)
   end
 
   def show
@@ -20,7 +29,7 @@ class TasksController < ApplicationController
   # 建立任務
   # 失敗回到new
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: t("tasks.controller.create_success")
     else
@@ -59,6 +68,6 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 end

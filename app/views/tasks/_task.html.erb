@@ -3,7 +3,9 @@
     <%= link_to task.title, task_path(task),
         data: { turbo_frame: "_top" },
         class: "font-bold" %>
-    <p><%= task.content %></p>
+    <p class="text-sm text-gray-500">
+      <%= task.content %>
+    </p>
 
     <p><%= t("tasks.show.show_status") %>: 
       <%= t("tasks.form.#{task.status}") %>
@@ -15,6 +17,7 @@
   </div>
 
   <%= link_to edit_task_path(task),
+      data: { turbo_frame: dom_id(task) },
       aria: { label: t("tasks.index.edit") },
       title: t("tasks.index.edit"),
       class: "p-2 hover:bg-gray-100 rounded" do %>

@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Task < ApplicationRecord
+  belongs_to :user
+
   enum :status, {
     pending: "pending",
     in_progress: "in_progress",
@@ -85,10 +87,10 @@ class Task < ApplicationRecord
     values.present? ? where(status: values) : all
   }
   scope :due_date_gteq, ->(value) {
-    value.present? ? where("due_date >= ?", value) : all
+    value.present? ? where("due_date >= ?", value.to_date) : all
   }
   scope :due_date_lteq, ->(value) {
-    value.present? ? where("due_date <= ?", value) : all
+    value.present? ? where("due_date <= ?", value.to_date) : all
   }
   scope :priority_eq, ->(value) {
     value.present? ? where(priority: priorities[value.to_s]) : all

@@ -43,6 +43,9 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        required: "can't be blank"
   tasks:
     index:
       title: "Task List"
@@ -74,6 +77,10 @@ en:
       low: "Low"
       medium: "Medium"
       high: "High"
+      login: "Log In"
+      signup: "Sign Up"
+      logout: "Log Out"
+      admin_title: "Admin Page"
     new:
       new_title: "New Task"
       back: "Back to Task List"
@@ -103,3 +110,29 @@ en:
       update_success: "Task updated successfully"
       update_fail: "Task update failed"
       destroy_success: "Task deleted successfully"
+  users:
+    new:
+      signup_title: "Sign Up"
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      password_confirmation: "Password Confirmation"
+      back: "Back to login page"
+      error: "Please fix the following errors"
+      login: "Log In"
+      account: "Already have an account?"
+    controller:
+      create_success: "User created successfully"
+      create_fail: "User creation failed"
+  sessions:
+    new:
+      login: "Log In"
+      email: "Email"
+      password: "Password"
+      no_account: "Don't have an account?"
+      signup: "Sign Up"
+      back: "Back to signup page"
+    controller:
+      login_success: "Login successful"
+      login_fail: "Login failed, please check your email or password"
+      logout_success: "Logout successful"
