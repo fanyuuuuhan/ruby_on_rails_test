@@ -20,6 +20,14 @@ zh-TW:
         record_invalid: "驗證失敗: %{errors}"
         required: "不能為空白"
   tasks:
+    sort_orders:
+      created_at_desc: "依建立時間排序(由新到舊)"
+      created_at_asc: "依建立時間排序(由舊到新)"
+      title_asc: "依標題排序(由小到大)"
+      due_date_asc: "依截止日期排序(由近到遠)"
+      due_date_desc: "依截止日期排序(由遠到近)"
+      priority_asc: "依優先順序排序(由低到高)"
+      priority_desc: "依優先順序排序(由高到低)"
     index:
       title: "任務列表"
       new: "新增任務"
@@ -29,13 +37,6 @@ zh-TW:
       empty: "目前沒有任務"
       due_date: "截止日期"
       sort: "選擇排序方式"
-      sort_created_at_asc: "依建立時間排序(由舊到新)"
-      sort_created_at_desc: "依建立時間排序(由新到舊)"
-      sort_title_asc: "依任務名稱排序(由A到Z)"
-      sort_due_date_asc: "依截止日期排序(由早到晚)"
-      sort_due_date_desc: "依截止日期排序(由晚到早)"
-      sort_priority_asc: "依優先順序排序(低到高)"
-      sort_priority_desc: "依優先順序排序(高到低)"
       search_title: "搜尋任務名稱"
       search_status: "搜尋任務狀態"
       search_priority: "搜尋任務優先順序"

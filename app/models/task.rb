@@ -90,10 +90,10 @@ class Task < ApplicationRecord
     values.present? ? where(status: values) : all
   }
   scope :due_date_gteq, ->(value) {
-    value.present? ? where("due_date >= ?", value) : all
+    value.present? ? where("due_date >= ?", value.to_date) : all
   }
   scope :due_date_lteq, ->(value) {
-    value.present? ? where("due_date <= ?", value) : all
+    value.present? ? where("due_date <= ?", value.to_date) : all
   }
   scope :priority_eq, ->(value) {
     value.present? ? where(priority: priorities[value.to_s]) : all
@@ -111,19 +111,9 @@ class Task < ApplicationRecord
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
   scope :tag_names, ->(input) {
-    names = input.to_s.split(/[,，]/).map(&:strip).reject(&:blank?)
+    names = input.to_s.split("，").map(&:strip).compact_blank
     names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
   }
-
-  def tag_names
-    tags.pluck(:name).join(", ")
-  end
-
-  def tag_names=(names)
-    self.tags = Array(names).reject(&:blank?).map do |name|
-      Tag.find_or_create_by(name: name.strip)
-    end
-  end
 
   validates :title, presence: true,
             length: { maximum: 100 },
