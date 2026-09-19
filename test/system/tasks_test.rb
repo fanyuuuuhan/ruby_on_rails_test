@@ -14,11 +14,12 @@ class TasksTest < ApplicationSystemTestCase
   test "建立新增任務" do
     visit tasks_url
     visit new_task_path
-    fill_in "任務名稱", with: "任務標題"
-    fill_in "任務描述", with: "任務內容說明"
-    select "待處理", from: "任務狀態"
-    page.execute_script("document.querySelector('form').submit();")
-    assert_current_path tasks_path, wait: 5
+    within("form") do
+      fill_in "task_title", with: "任務標題"
+      fill_in "task_content", with: "任務內容說明"
+      select "待處理", from: "task_status"
+      click_on "新增任務"
+    end
     assert_text "任務建立成功"
   end
 
