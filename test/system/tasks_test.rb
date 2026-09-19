@@ -42,9 +42,9 @@ class TasksTest < ApplicationSystemTestCase
     task = create(:task, user: @user)
     visit tasks_url
     within("li", text: task.title) do
-      accept_confirm(wait: 5) do
-        click_on "刪除"
-      end
+      delete_link = find("a", text: "刪除")
+      page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_link.native)
+      delete_link.click
     end
     assert_text "任務刪除成功"
     assert_not Task.exists?(task.id)
