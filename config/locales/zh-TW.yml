@@ -97,6 +97,8 @@ zh-TW:
       destroy_success: "任務刪除成功"
       destroy_success: "任務刪除成功"
   users:
+    model:
+      cannot_demote_self: "無法移除自己的管理員權限"
     new:
       signup: "註冊"
       name: "姓名"

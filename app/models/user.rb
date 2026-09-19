@@ -28,6 +28,17 @@ class User < ApplicationRecord
         BCrypt::Password.new(self.password_digest) == plain_password
     end
 
+    def update_by(actor, attrs)
+        assign_attributes(attrs)
+
+        if actor == self && admin_was && !admin
+            errors.add(:admin, I18n.t("users.model.cannot_demote_self"))
+            return false
+        end
+
+        save
+    end
+
     private
     def password_required?
         new_record? || password.present?

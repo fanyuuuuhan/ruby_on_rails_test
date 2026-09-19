@@ -13,7 +13,6 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.admin = admin_value
     if @user.save
       redirect_to admin_users_path
     else
@@ -29,14 +28,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user == current_user && !admin_value
-      redirect_to edit_admin_user_path(@user), alert: t(".cannot_demote_self")
-      return
-    end
-
-    @user.assign_attributes(user_params)
-    @user.admin = admin_value
-    if @user.save
+    if @user.update_by(current_user, user_params)
       redirect_to admin_user_path(@user), notice: t(".update_success")
     else
       render :edit, status: :unprocessable_entity
@@ -67,11 +59,8 @@ class Admin::UsersController < ApplicationController
       :name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :admin
     )
-  end
-
-  def admin_value
-    ActiveModel::Type::Boolean.new.cast(params.require(:user).fetch(:admin, false))
   end
 end
