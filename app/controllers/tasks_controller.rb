@@ -64,7 +64,7 @@ class TasksController < ApplicationController
 
   # 僅允許 title, content, status, due_date, priority 這五個欄位被傳入
   def task_params
-    params.require(:task).permit(:title, :content, :status, :due_date, :priority, :tag_names)
+    params.require(:task).permit(:title, :content, :status, :due_date, :priority)
   end
 
   def set_task

@@ -12,10 +12,11 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "建立新增任務" do
+    task_title = "任務標題#{SecureRandom.hex(4)}"
     visit tasks_url
     visit new_task_path
     within("form") do
-      fill_in "task_title", with: "任務標題"
+      fill_in "task_title", with: task_title
       fill_in "task_content", with: "任務內容說明"
       select "待處理", from: "task_status"
       click_button "新增任務"
@@ -27,14 +28,17 @@ class TasksTest < ApplicationSystemTestCase
   test "編輯任務" do
     task = create(:task)
     task = create(:task, user: @user)
+    updated_title = "更新後的任務標題#{SecureRandom.hex(4)}"
     visit edit_task_path(task)
     within("form") do
-      fill_in "task_title", with: "更新後的任務標題"
-      fill_in "task_content", with: "更新後的任務內容說明"
+      find("#task_title").set(updated_title)
+      find("#task_content").set("更新後的任務內容說明")
       select "進行中", from: "task_status"
-      click_on "更新任務"
+      assert_field "task_title", with: updated_title
+      click_button "更新任務"
     end
 
+    assert_current_path tasks_path, wait: 5
     assert_text "任務更新成功"
   end
 
@@ -46,8 +50,9 @@ class TasksTest < ApplicationSystemTestCase
       page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_link.native)
       delete_link.click
     end
-    assert_text "任務刪除成功"
+    assert_current_path tasks_path, wait: 5
     assert_not Task.exists?(task.id)
+    assert_no_text task.title
   end
 
   test "查看任務" do
