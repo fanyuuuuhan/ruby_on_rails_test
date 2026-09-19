@@ -1,0 +1,28 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id         :bigint           not null, primary key
+#  content    :text
+#  status     :string           default("pending"), not null
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# one:
+#   title: "MyString1"
+#   content: "MyText"
+#   status: "pending"
+#   priority: "low"
+#   due_date: <%= 1.day.from_now %>
+#   user: one
+
+# two:
+#   title: "MyString2"
+#   content: "MyText"
+#   status: "pending"
+#   priority: "low"
+#   due_date: <%= 2.days.from_now %>
+#   user: one

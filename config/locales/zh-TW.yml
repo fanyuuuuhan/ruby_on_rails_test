@@ -16,16 +16,21 @@ zh-TW:
               blank: "不能為空白"
             status:
               blank: "不能為空白"
-        user:
-          attributes:
-            base:
-              cannot_delete_last_admin: "無法刪除最後一位管理員"
-              cannot_remove_last_admin: "無法將最後一位管理員移除管理員權限"
+      messages:
+        record_invalid: "驗證失敗: %{errors}"
+        required: "不能為空白"
   tasks:
+    sort_orders:
+      created_at_desc: "依建立時間排序(由新到舊)"
+      created_at_asc: "依建立時間排序(由舊到新)"
+      title_asc: "依標題排序(由小到大)"
+      due_date_asc: "依截止日期排序(由近到遠)"
+      due_date_desc: "依截止日期排序(由遠到近)"
+      priority_asc: "依優先順序排序(由低到高)"
+      priority_desc: "依優先順序排序(由高到低)"
     index:
       title: "任務列表"
       new: "新增任務"
-      new: "+新增任務"
       edit: "編輯"
       delete: "刪除"
       delete_check: "確定要刪除嗎？"
@@ -78,8 +83,6 @@ zh-TW:
       low: "低"
       medium: "中"
       high: "高"
-      tags: "標籤"
-      tags_placeholder: "請輸入標籤名稱，並使用逗號分隔"
     edit:
       edit_title: "編輯任務"
       back: "回到任務列表"

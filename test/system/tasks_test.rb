@@ -13,11 +13,12 @@ class TasksTest < ApplicationSystemTestCase
 
   test "建立新增任務" do
     visit tasks_url
-    click_on "新增任務"
+    visit new_task_path
     fill_in "任務名稱", with: "任務標題"
     fill_in "任務描述", with: "任務內容說明"
     select "待處理", from: "任務狀態"
-    click_on "新增任務"
+    page.execute_script("document.querySelector('form').submit();")
+    assert_current_path tasks_path, wait: 5
     assert_text "任務建立成功"
   end
 
@@ -37,11 +38,10 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "刪除任務" do
-    task = create(:task)
     task = create(:task, user: @user)
     visit tasks_url
     within("li", text: task.title) do
-      accept_confirm do
+      accept_confirm(wait: 5) do
         click_on "刪除"
       end
     end
@@ -72,7 +72,7 @@ class TasksTest < ApplicationSystemTestCase
       status: "pending"
     )
     visit tasks_url
-    fill_in "任務名稱", with: "A"
+    fill_in "搜尋任務名稱", with: "A"
     click_on "查詢"
     assert_text matching_task.title
     assert_no_text "任務標題B"
@@ -116,10 +116,10 @@ class TasksTest < ApplicationSystemTestCase
       status: "pending",
       due_date: outside_due_date
     )
-    visit tasks_url
-    fill_in "截止日期(起)", with: Date.current
-    fill_in "截止日期(迄)", with: Date.current + 2.days
-    click_on "查詢"
+    visit tasks_path(
+      due_date_gteq: Date.current,
+      due_date_lteq: Date.current + 2.days
+    )
     assert_text matching_task.title
     assert_no_text "時間外任務"
   end

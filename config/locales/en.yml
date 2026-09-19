@@ -43,6 +43,9 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        required: "can't be blank"
   tasks:
     index:
       title: "Task List"
