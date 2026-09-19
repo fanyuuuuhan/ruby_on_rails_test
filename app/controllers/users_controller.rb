@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.admin = admin_param if params[:user].key?(:admin)
     if @user.save
       redirect_to login_path, notice: t("users.controller.create_success")
     else
@@ -18,9 +17,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def admin_param
-    ActiveModel::Type::Boolean.new.cast(params[:user][:admin])
   end
 end
