@@ -63,14 +63,14 @@
         <%= form.label :status_eq, t(".search_status") %>
         <%= form.select :status_eq,
             options_for_select(
-              [["", ""]] + Task.statuses.keys.map { |status| [t("tasks.form.#{status}"), status] },
+              Task.statuses.keys.map { |status| [t("tasks.form.#{status}"), status] },
               params[:status_eq]
             ), {}, { onchange: "this.form.submit();" } %>
 
         <%= form.label :priority_eq, t(".search_priority") %>
         <%= form.select :priority_eq,
             options_for_select(
-              [["", ""]] + Task.priorities.keys.map { |priority| [t("tasks.form.#{priority}"), priority] },
+              Task.priorities.keys.map { |priority| [t("tasks.form.#{priority}"), priority] },
               params[:priority_eq]
             ), {}, { onchange: "this.form.submit();" } %>
 
