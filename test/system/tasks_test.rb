@@ -20,15 +20,15 @@ class TasksTest < ApplicationSystemTestCase
       select "待處理", from: "task_status"
       click_on "新增任務"
     end
+    assert_current_path tasks_path, wait: 5
     assert_text "任務建立成功"
   end
 
   test "編輯任務" do
     task = create(:task)
     task = create(:task, user: @user)
-    visit tasks_url
-    within("turbo-frame##{dom_id(task)}") do
-      click_on "編輯"
+    visit edit_task_path(task)
+    within("form") do
       fill_in "task_title", with: "更新後的任務標題"
       fill_in "task_content", with: "更新後的任務內容說明"
       select "進行中", from: "task_status"
@@ -72,9 +72,7 @@ class TasksTest < ApplicationSystemTestCase
       title: "任務標題B",
       status: "pending"
     )
-    visit tasks_url
-    fill_in "搜尋任務名稱", with: "A"
-    click_on "查詢"
+    visit tasks_url(title_cont: "A")
     assert_text matching_task.title
     assert_no_text "任務標題B"
   end

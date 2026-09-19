@@ -28,10 +28,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.admin = params[:user][:admin] if params[:user].key?(:admin)
+    if @user == current_user && user_params[:admin].in?([ "0", false ])
+      redirect_to edit_admin_user_path(@user), alert: t(".cannot_demote_self")
+      return
+    end
+
     if @user.update(user_params)
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t(".update_success")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -62,6 +65,7 @@ class Admin::UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
+      :admin
     )
   end
 end
