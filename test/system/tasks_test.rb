@@ -18,7 +18,7 @@ class TasksTest < ApplicationSystemTestCase
       fill_in "task_title", with: "任務標題"
       fill_in "task_content", with: "任務內容說明"
       select "待處理", from: "task_status"
-      click_on "新增任務"
+      click_button "新增任務"
     end
     assert_current_path tasks_path, wait: 5
     assert_text "任務建立成功"
