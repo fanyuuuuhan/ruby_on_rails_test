@@ -29,9 +29,9 @@ class TasksTest < ApplicationSystemTestCase
     visit tasks_url
     within("turbo-frame##{dom_id(task)}") do
       click_on "編輯"
-      fill_in "任務名稱", with: "更新後的任務標題"
-      fill_in "任務描述", with: "更新後的任務內容說明"
-      select "進行中", from: "任務狀態"
+      fill_in "task_title", with: "更新後的任務標題"
+      fill_in "task_content", with: "更新後的任務內容說明"
+      select "進行中", from: "task_status"
       click_on "更新任務"
     end
 
