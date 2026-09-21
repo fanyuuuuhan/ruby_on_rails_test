@@ -9,3 +9,8 @@ AllCops:
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+Layout/IndentationWidth:
+  Width: 2
+
+Layout/IndentationStyle:
+  EnforcedStyle: spaces

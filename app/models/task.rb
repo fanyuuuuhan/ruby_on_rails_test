@@ -112,7 +112,24 @@ class Task < ApplicationRecord
   }
   scope :tag_names, ->(input) {
     names = input.to_s.split("，").map(&:strip).compact_blank
-    names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
+    if names.present?
+      tasks = Task.arel_table
+      tags = Tag.arel_table
+      task_tags = TaskTag.arel_table
+
+      task_condition = task_tags[:task_id].eq(tasks[:id])
+      tag_condition = tags[:name].in(names)
+      combined_condition = task_condition.and(tag_condition)
+      tags_exists =
+        TaskTag
+          .joins(:tag)
+          .where(combined_condition)
+          .arel
+          .exists
+      where(tags_exists)
+    else
+      all
+    end
   }
   def with_tag_names
     tags.pluck(:name).join("，")
