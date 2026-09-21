@@ -13,7 +13,7 @@
 <%= form_with(
       model: @task,
       local: true,
-      data: { turbo: false },
+      data: { turbo_frame: "_top" },
       html: { class: "space-y-4 px-5", novalidate: true }
     ) do |form| %>
   <div>

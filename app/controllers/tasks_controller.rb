@@ -6,15 +6,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks =
-    if current_user
-      current_user.tasks.includes(:tags)
-                        .search(params.permit(*Task::SEARCH_SCOPES))
-                        .sorted_by(params[:sort_order])
-    else
-      Task.none
-    end
-
+    @tasks = current_user ? filtered_tasks : Task.none
     @pagy, @tasks = pagy(:offset, @tasks, limit: 5)
   end
 
@@ -61,6 +53,17 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def filtered_tasks
+    current_user.tasks
+                .includes(:tags)
+                .search(search_params)
+                .sorted_by(params[:sort_order])
+  end
+
+  def search_params
+    params.permit(*Task::SEARCH_SCOPES)
+  end
 
   # 僅允許 title, content, status, due_date, priority 這五個欄位被傳入
   def task_params

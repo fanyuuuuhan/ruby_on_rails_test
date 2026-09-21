@@ -114,11 +114,11 @@ class Task < ApplicationRecord
     names = input.to_s.split("，").map(&:strip).compact_blank
     names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
   }
-  def tag_names
+  def with_tag_names
     tags.pluck(:name).join("，")
   end
 
-  def tag_names=(names)
+  def with_tag_names=(names)
     self.tags = names.to_s.split("，").map do |name|
       Tag.find_or_create_by(name: name.strip)
     end
