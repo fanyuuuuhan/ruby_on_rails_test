@@ -43,10 +43,20 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+            status:
+              blank: "can't be blank"
       messages:
         record_invalid: "Validation failed: %{errors}"
         required: "can't be blank"
   tasks:
+    sort_orders:
+      created_at_desc: "Sort by Created At (Newest to Oldest)"
+      created_at_asc: "Sort by Created At (Oldest to Newest)"
+      title_asc: "Sort by Task Title (A to Z)"
+      due_date_asc: "Sort by Due Date (Oldest to Newest)"
+      due_date_desc: "Sort by Due Date (Newest to Oldest)"
+      priority_asc: "Sort by Priority (Low to High)"
+      priority_desc: "Sort by Priority (High to Low)"
     index:
       title: "Task List"
       new: "New Task"
@@ -66,6 +76,7 @@ en:
       search_title: "Search by Task Title"
       search_status: "Search by Task Status"
       search_priority: "Search by Task Priority"
+      all: "All"
       search_input_title: "Please enter task title"
       search_button: "Search"
       pending: "Pending"
@@ -87,6 +98,7 @@ en:
       new_title: "New Task"
       back: "Back to Task List"
     form:
+      error: "Please fix the following errors"
       form_title: "Task Title"
       form_content: "Task Content"
       form_status: "Task Status"
@@ -115,8 +127,10 @@ en:
       update_fail: "Task update failed"
       destroy_success: "Task deleted successfully"
   users:
+    model:
+      cannot_demote_self: "Cannot demote yourself from admin"
     new:
-      signup_title: "Sign Up"
+      signup: "Sign Up"
       name: "Name"
       email: "Email"
       password: "Password"

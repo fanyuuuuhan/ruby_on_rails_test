@@ -11,6 +11,8 @@
 #
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :task_tags, dependent: :destroy
+  has_many :tags, through: :task_tags
 
   enum :status, {
     pending: "pending",
@@ -51,6 +53,7 @@ class Task < ApplicationRecord
     due_date_lteq
     priority_eq
     priority_in
+    tag_names
   ].freeze
 
   enum :priority, {
@@ -107,6 +110,19 @@ class Task < ApplicationRecord
 
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
+  scope :tag_names, ->(input) {
+    names = input.to_s.split("，").map(&:strip).compact_blank
+    names.present? ? joins(:tags).where(tags: { name: names }).distinct : all
+  }
+  def tag_names
+    tags.pluck(:name).join("，")
+  end
+
+  def tag_names=(names)
+    self.tags = names.to_s.split("，").map do |name|
+      Tag.find_or_create_by(name: name.strip)
+    end
+  end
 
   validates :title, presence: true,
             length: { maximum: 100 },

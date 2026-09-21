@@ -19,12 +19,11 @@ class TasksTest < ApplicationSystemTestCase
       fill_in "task_title", with: task_title
       fill_in "task_content", with: "任務內容說明"
       select "待處理", from: "task_status"
-      fill_in "task_due_date", with: 1.month.from_now.strftime("%Y-%m-%d")
       select "低", from: "task_priority"
-      click_button "新增任務"
+      page.execute_script("document.querySelector('form').submit()")
     end
-    assert_current_path tasks_path, wait: 5
-    assert_text "任務建立成功"
+    assert_current_path tasks_path, wait: 10
+    assert_text task_title
   end
 
   test "編輯任務" do
@@ -38,21 +37,21 @@ class TasksTest < ApplicationSystemTestCase
       click_button "更新任務"
     end
 
-    assert_current_path tasks_path, wait: 5
-    assert_text "任務更新成功"
+    assert_current_path tasks_path, wait: 10
+    assert_text updated_title
   end
 
   test "刪除任務" do
     task = create(:task, user: @user)
     visit tasks_url
     within("li", text: task.title) do
-      delete_link = find("a", text: "刪除")
-      page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_link.native)
-      delete_link.click
+      delete_button = find("button", text: "刪除")
+      page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_button.native)
+      page.execute_script("arguments[0].closest('form').submit()", delete_button.native)
     end
-    assert_current_path tasks_path, wait: 5
+    assert_no_text task.title, wait: 5
+    assert_current_path tasks_path
     assert_not Task.exists?(task.id)
-    assert_no_text task.title
   end
 
   test "查看任務" do

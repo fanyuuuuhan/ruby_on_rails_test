@@ -8,8 +8,8 @@ class TasksController < ApplicationController
   def index
     @tasks =
     if current_user
-      filters = params.permit(*Task::SEARCH_SCOPES).to_h
-      current_user.tasks.search(filters)
+      current_user.tasks.includes(:tags)
+                        .search(params.permit(*Task::SEARCH_SCOPES))
                         .sorted_by(params[:sort_order])
     else
       Task.none
