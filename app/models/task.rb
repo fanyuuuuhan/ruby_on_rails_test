@@ -66,7 +66,8 @@ class Task < ApplicationRecord
     filters.each do |key, value|
       next unless SEARCH_SCOPES.include?(key.to_s)
 
-      relation = relation.public_send(key, value)
+      scope_name = key.to_s == "tag_names" ? :by_tag_names : key
+      relation = relation.public_send(scope_name, value)
     end
     relation
   end
@@ -110,7 +111,7 @@ class Task < ApplicationRecord
 
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
-  scope :tag_names, ->(input) {
+  scope :by_tag_names, ->(input) {
     names = input.to_s.split("，").map(&:strip).compact_blank
     if names.present?
       tasks = Task.arel_table
@@ -131,11 +132,11 @@ class Task < ApplicationRecord
       all
     end
   }
-  def with_tag_names
+  def tag_names
     tags.pluck(:name).join("，")
   end
 
-  def with_tag_names=(names)
+  def tag_names=(names)
     self.tags = names.to_s.split("，").map do |name|
       Tag.find_or_create_by(name: name.strip)
     end
