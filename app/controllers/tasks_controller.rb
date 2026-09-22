@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   # 失敗->回到編輯頁面
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: t("tasks.controller.update_success")
+      redirect_to tasks_path, status: :see_other, notice: t("tasks.controller.update_success")
     else
       flash.now[:alert] = t("tasks.controller.update_fail")
       render :edit, status: :unprocessable_entity
