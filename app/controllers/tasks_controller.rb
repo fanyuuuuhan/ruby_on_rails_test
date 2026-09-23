@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, notice: t("tasks.controller.create_success")
+      redirect_to tasks_path, status: :see_other, notice: t("tasks.controller.create_success")
     else
       flash.now[:alert] = t("tasks.controller.create_fail")
       render :new, status: :unprocessable_entity

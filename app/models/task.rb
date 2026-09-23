@@ -112,7 +112,7 @@ class Task < ApplicationRecord
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
   scope :by_tag_names, ->(input) {
-    names = input.to_s.split("，").map(&:strip).compact_blank
+    names = input.to_s.split(/[,，]/).map(&:strip).compact_blank
     if names.present?
       tasks = Task.arel_table
       tags = Tag.arel_table

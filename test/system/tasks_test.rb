@@ -20,7 +20,7 @@ class TasksTest < ApplicationSystemTestCase
       fill_in "task_content", with: "任務內容說明"
       select "待處理", from: "task_status"
       select "低", from: "task_priority"
-      page.execute_script("document.querySelector('form').submit()")
+      click_button "新增任務"
     end
     assert_current_path tasks_path, wait: 10
     assert_text task_title
@@ -47,7 +47,7 @@ class TasksTest < ApplicationSystemTestCase
     within("li", text: task.title) do
       delete_button = find("button", text: "刪除")
       page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_button.native)
-      page.execute_script("arguments[0].closest('form').submit()", delete_button.native)
+      delete_button.click
     end
     assert_no_text task.title, wait: 5
     assert_current_path tasks_path
