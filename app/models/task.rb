@@ -137,8 +137,8 @@ class Task < ApplicationRecord
   end
 
   def tag_names=(names)
-    self.tags = names.to_s.split("，").map do |name|
-      Tag.find_or_create_by(name: name.strip)
+    self.tags = names.to_s.split(/[,，]/).map(&:strip).compact_blank.map do |name|
+      Tag.find_or_create_by(name: name)
     end
   end
 

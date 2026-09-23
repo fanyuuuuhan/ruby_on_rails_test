@@ -261,6 +261,16 @@ class TaskTest < ActiveSupport::TestCase
     assert_equal [ matching_task, other_task ], Task.search(tag_names: "工作，私人").to_a
   end
 
+  test "設定標籤名稱時會忽略空白標籤" do
+    task = build(:task)
+
+    task.tag_names = "工作，，私人，"
+
+    assert task.save
+    assert_equal %w[工作 私人], task.tags.order(:name).pluck(:name)
+    assert_not Tag.exists?(name: "")
+  end
+
   test "可以查詢指定截止日期起始之後的任務" do
     create(
       :task,
