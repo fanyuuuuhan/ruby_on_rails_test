@@ -46,8 +46,9 @@ class TasksTest < ApplicationSystemTestCase
     visit tasks_url
     within("li", text: task.title) do
       delete_button = find("button", text: "刪除")
-      page.execute_script("arguments[0].removeAttribute('data-turbo-confirm')", delete_button.native)
-      delete_button.click
+      accept_confirm do
+        delete_button.click
+      end
     end
     assert_no_text task.title, wait: 5
     assert_current_path tasks_path
