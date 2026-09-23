@@ -37,8 +37,8 @@ class TasksTest < ApplicationSystemTestCase
       click_button "更新任務"
     end
 
-    assert_current_path tasks_path, wait: 10
     assert_text updated_title
+    assert_current_path tasks_path, wait: 10
   end
 
   test "刪除任務" do
