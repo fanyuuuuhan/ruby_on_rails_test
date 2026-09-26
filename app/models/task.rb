@@ -61,13 +61,36 @@ class Task < ApplicationRecord
     medium: "medium",
     high: "high"
   }, validate: true
+
   def self.search(filters = {})
     relation = all
-    filters.each do |key, value|
-      next unless SEARCH_SCOPES.include?(key.to_s)
-
-      scope_name = key.to_s == "tag_names" ? :by_tag_names : key
-      relation = relation.public_send(scope_name, value)
+    
+    if filters[:title_eq].present?
+      relation = relation.title_eq(filters[:title_eq])
+    end
+    if filters[:title_cont].present?
+      relation = relation.title_cont(filters[:title_cont])
+    end
+    if filters[:status_eq].present?
+      relation = relation.status_eq(filters[:status_eq])
+    end
+    if filters[:status_in].present?
+      relation = relation.status_in(filters[:status_in])
+    end
+    if filters[:due_date_gteq].present?
+      relation = relation.due_date_gteq(filters[:due_date_gteq])
+    end
+    if filters[:due_date_lteq].present?
+      relation = relation.due_date_lteq(filters[:due_date_lteq])
+    end
+    if filters[:priority_eq].present?
+      relation = relation.priority_eq(filters[:priority_eq])
+    end
+    if filters[:priority_in].present?
+      relation = relation.priority_in(filters[:priority_in])
+    end
+    if filters[:tag_names].present?
+      relation = relation.by_tag_names(filters[:tag_names])
     end
     relation
   end
@@ -113,25 +136,12 @@ class Task < ApplicationRecord
   }
   scope :by_tag_names, ->(input) {
     names = input.to_s.split(/[,，]/).map(&:strip).compact_blank
-    if names.present?
-      tasks = Task.arel_table
-      tags = Tag.arel_table
-      task_tags = TaskTag.arel_table
+    return all if names.blank?
 
-      task_condition = task_tags[:task_id].eq(tasks[:id])
-      tag_condition = tags[:name].in(names)
-      combined_condition = task_condition.and(tag_condition)
-      tags_exists =
-        TaskTag
-          .joins(:tag)
-          .where(combined_condition)
-          .arel
-          .exists
-      where(tags_exists)
-    else
-      all
-    end
+    search_tags_id = TaskTag.joins(:tag).where(tags: { name: names }).select(:task_id)
+    where(id: search_tags_id)
   }
+
   def tag_names
     tags.pluck(:name).join("，")
   end

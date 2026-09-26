@@ -23,9 +23,9 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, status: :see_other, notice: t("tasks.controller.create_success")
+      redirect_to tasks_path, status: :see_other, notice: t(".create_success")
     else
-      flash.now[:alert] = t("tasks.controller.create_fail")
+      flash.now[:alert] = t(".create_fail")
       render :new, status: :unprocessable_entity
     end
   end
@@ -35,9 +35,9 @@ class TasksController < ApplicationController
   # 失敗->回到編輯頁面
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, status: :see_other, notice: t("tasks.controller.update_success")
+      redirect_to tasks_path, status: :see_other, notice: t(".update_success")
     else
-      flash.now[:alert] = t("tasks.controller.update_fail")
+      flash.now[:alert] = t(".update_fail")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   # 刪除任務
   def destroy
     @task.destroy
-    redirect_to tasks_path, status: :see_other, notice: t("tasks.controller.destroy_success")
+    redirect_to tasks_path, status: :see_other, notice: t(".destroy_success")
   end
 
   # 編輯任務
@@ -65,9 +65,9 @@ class TasksController < ApplicationController
     params.permit(*Task::SEARCH_SCOPES)
   end
 
-  # 僅允許 title, content, status, due_date, priority 這五個欄位被傳入
+  # 僅允許 title, content, status, due_date, priority 這五個欄位和 tag_names 被傳入
   def task_params
-    params.require(:task).permit(:title, :content, :status, :due_date, :priority)
+    params.require(:task).permit(:title, :content, :status, :due_date, :priority, :tag_names)
   end
 
   def set_task
