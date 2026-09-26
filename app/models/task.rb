@@ -64,7 +64,7 @@ class Task < ApplicationRecord
 
   def self.search(filters = {})
     relation = all
-    
+
     if filters[:title_eq].present?
       relation = relation.title_eq(filters[:title_eq])
     end
