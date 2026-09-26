@@ -29,9 +29,10 @@
                 <% end %>
                 <%= task.user.name %>
               <% end %>
-              <%= button_to t(".delete"), task_path(task),
+              <%= button_to t(".delete"),
+                  task_path(task),
                   method: :delete,
-                  data: { turbo_confirm: t(".delete_check") },
+                  form: { data: { turbo_confirm: t(".delete_check") } },
                   class: "px-4 py-2 font-bold bg-pink-100" %>
             </li>
           <% end %>
