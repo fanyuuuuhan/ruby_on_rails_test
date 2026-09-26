@@ -29,11 +29,10 @@
                 <% end %>
                 <%= task.user.name %>
               <% end %>
-              <%= link_to t(".delete"), task_path(task),
-                  data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t(".delete_check")
-                  },
+              <%= button_to t(".delete"),
+                  task_path(task),
+                  method: :delete,
+                  form: { data: { turbo_confirm: t(".delete_check") } },
                   class: "px-4 py-2 font-bold bg-pink-100" %>
             </li>
           <% end %>
@@ -65,14 +64,14 @@
             options_for_select(
               Task.statuses.keys.map { |status| [t("tasks.form.#{status}"), status] },
               params[:status_eq]
-            ), {}, { onchange: "this.form.submit();" } %>
+            ), { prompt: t(".all") }, { onchange: "this.form.submit();" } %>
 
         <%= form.label :priority_eq, t(".search_priority") %>
         <%= form.select :priority_eq,
             options_for_select(
               Task.priorities.keys.map { |priority| [t("tasks.form.#{priority}"), priority] },
               params[:priority_eq]
-            ), {}, { onchange: "this.form.submit();" } %>
+            ), { prompt: t(".all") }, { onchange: "this.form.submit();" } %>
 
         <%= form.label :due_date_gteq, t(".search_due_date_start") %>
         <%= form.date_field :due_date_gteq,
@@ -82,6 +81,11 @@
         <%= form.label :due_date_lteq, t(".search_due_date_end") %>
         <%= form.date_field :due_date_lteq,
             value: params[:due_date_lteq],
+            class: "border border-gray-300 rounded-md p-2" %>
+
+	      <%= form.label :tag_names, t(".search_by_tag") %>
+        <%= form.text_field :tag_names,
+            value: params[:tag_names], placeholder: t(".search_input_by_tag"),
             class: "border border-gray-300 rounded-md p-2" %>
 
         <%= form.submit t(".search_button"), class: "bg-blue-100 text-black my-2 hover:bg-blue-300 font-bold py-2 px-4 rounded" %>

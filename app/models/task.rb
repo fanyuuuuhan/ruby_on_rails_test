@@ -11,6 +11,8 @@
 #
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :task_tags, dependent: :destroy
+  has_many :tags, through: :task_tags
 
   enum :status, {
     pending: "pending",
@@ -51,6 +53,7 @@ class Task < ApplicationRecord
     due_date_lteq
     priority_eq
     priority_in
+    tag_names
   ].freeze
 
   enum :priority, {
@@ -58,12 +61,36 @@ class Task < ApplicationRecord
     medium: "medium",
     high: "high"
   }, validate: true
+
   def self.search(filters = {})
     relation = all
-    filters.each do |key, value|
-      next unless SEARCH_SCOPES.include?(key.to_s)
 
-      relation = relation.public_send(key, value)
+    if filters[:title_eq].present?
+      relation = relation.title_eq(filters[:title_eq])
+    end
+    if filters[:title_cont].present?
+      relation = relation.title_cont(filters[:title_cont])
+    end
+    if filters[:status_eq].present?
+      relation = relation.status_eq(filters[:status_eq])
+    end
+    if filters[:status_in].present?
+      relation = relation.status_in(filters[:status_in])
+    end
+    if filters[:due_date_gteq].present?
+      relation = relation.due_date_gteq(filters[:due_date_gteq])
+    end
+    if filters[:due_date_lteq].present?
+      relation = relation.due_date_lteq(filters[:due_date_lteq])
+    end
+    if filters[:priority_eq].present?
+      relation = relation.priority_eq(filters[:priority_eq])
+    end
+    if filters[:priority_in].present?
+      relation = relation.priority_in(filters[:priority_in])
+    end
+    if filters[:tag_names].present?
+      relation = relation.by_tag_names(filters[:tag_names])
     end
     relation
   end
@@ -107,6 +134,23 @@ class Task < ApplicationRecord
 
     valid_priorities.present? ? where(priority: valid_priorities) : none
   }
+  scope :by_tag_names, ->(input) {
+    names = input.to_s.split(/[,，]/).map(&:strip).compact_blank
+    return all if names.blank?
+
+    search_tags_id = TaskTag.joins(:tag).where(tags: { name: names }).select(:task_id)
+    where(id: search_tags_id)
+  }
+
+  def tag_names
+    tags.pluck(:name).join("，")
+  end
+
+  def tag_names=(names)
+    self.tags = names.to_s.split(/[,，]/).map(&:strip).compact_blank.map do |name|
+      Tag.find_or_create_by(name: name)
+    end
+  end
 
   validates :title, presence: true,
             length: { maximum: 100 },

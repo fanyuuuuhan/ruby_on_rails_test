@@ -47,6 +47,7 @@ zh-TW:
       search_title: "搜尋任務名稱"
       search_status: "搜尋任務狀態"
       search_priority: "搜尋任務優先順序"
+      all: "不篩選"
       search_input_title: "請輸入任務名稱"
       search_button: "查詢"
       pending: "待處理"
@@ -83,6 +84,8 @@ zh-TW:
       low: "低"
       medium: "中"
       high: "高"
+      tags: "標籤"
+      tags_placeholder: "請輸入標籤名稱，使用逗號分隔"
     edit:
       edit_title: "編輯任務"
       back: "回到任務列表"
@@ -94,7 +97,6 @@ zh-TW:
       create_fail: "任務建立失敗"
       update_success: "任務更新成功"
       update_fail: "任務更新失敗"
-      destroy_success: "任務刪除成功"
       destroy_success: "任務刪除成功"
   users:
     model:

@@ -138,15 +138,20 @@ jobs:
       - name: Run System Tests
         env:
           RAILS_ENV: test
+          RAILS_LOG_LEVEL: debug
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test:system
+        run: |
+          mkdir -p tmp
+          set -o pipefail
+          bin/rails db:test:prepare test:system 2>&1 | tee tmp/system-test.log
 
-      - name: Keep screenshots from failed system tests
+      - name: Upload Rails request logs
         uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
         with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
+          name: rails-system-test-logs
+          path: |
+            tmp/system-test.log
+            log/test.log
+            tmp/screenshots
           if-no-files-found: ignore

@@ -43,10 +43,20 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+            status:
+              blank: "can't be blank"
       messages:
         record_invalid: "Validation failed: %{errors}"
         required: "can't be blank"
   tasks:
+    sort_orders:
+      created_at_desc: "Sort by Created At (Newest to Oldest)"
+      created_at_asc: "Sort by Created At (Oldest to Newest)"
+      title_asc: "Sort by Task Title (A to Z)"
+      due_date_asc: "Sort by Due Date (Oldest to Newest)"
+      due_date_desc: "Sort by Due Date (Newest to Oldest)"
+      priority_asc: "Sort by Priority (Low to High)"
+      priority_desc: "Sort by Priority (High to Low)"
     index:
       title: "Task List"
       new: "New Task"
@@ -66,6 +76,7 @@ en:
       search_title: "Search by Task Title"
       search_status: "Search by Task Status"
       search_priority: "Search by Task Priority"
+      all: "All"
       search_input_title: "Please enter task title"
       search_button: "Search"
       pending: "Pending"
@@ -81,10 +92,13 @@ en:
       signup: "Sign Up"
       logout: "Log Out"
       admin_title: "Admin Page"
+      search_by_tag: "Search by Tag"
+      search_input_by_tag: "Please enter tag name"
     new:
       new_title: "New Task"
       back: "Back to Task List"
     form:
+      error: "Please fix the following errors"
       form_title: "Task Title"
       form_content: "Task Content"
       form_status: "Task Status"
@@ -98,6 +112,8 @@ en:
       low: "Low"
       medium: "Medium"
       high: "High"
+      tag: "Tag"
+      tag_placeholder: "Please enter tag name"
     edit:
       edit_title: "Edit Task"
       back: "Back to Task List"
@@ -111,8 +127,10 @@ en:
       update_fail: "Task update failed"
       destroy_success: "Task deleted successfully"
   users:
+    model:
+      cannot_demote_self: "Cannot demote yourself from admin"
     new:
-      signup_title: "Sign Up"
+      signup: "Sign Up"
       name: "Name"
       email: "Email"
       password: "Password"
@@ -136,3 +154,51 @@ en:
       login_success: "Login successful"
       login_fail: "Login failed, please check your email or password"
       logout_success: "Logout successful"
+  admin:
+    users:
+      index:
+        title: "User List"
+        username: "Username"
+        email: "Email"
+        edit: "Edit User"
+        delete: "Delete User"
+        edit_button: "✎"
+        admin: "Admin?"
+        no_users: "No users here"
+        yes: "Yes"
+        no: "No"
+        delete_button: "🗑️"
+        user_count: "User Count"
+        new: "+Add User"
+        back: "Back to home Page"
+      show:
+        title: "User Details"
+        username: "Username"
+        email: "Email"
+        admin: "Admin?"
+        yes: "Yes"
+        no: "No"
+        no_tasks: "No tasks here"
+        back: "Back to User List"
+      new:
+        title: "Add User"
+        back: "Back to User List"
+      form:
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        admin: "Admin?"
+        submit: "Submit"
+      edit:
+        title: "Edit User"
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        admin: "Admin?"
+        submit: "Submit"
+        back: "Cancel Edit"
+      destroy:
+        cannot_delete_self: "Cannot delete the currently logged-in user"
+        deleted_success: "User deleted successfully"
