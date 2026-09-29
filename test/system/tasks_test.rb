@@ -22,8 +22,8 @@ class TasksTest < ApplicationSystemTestCase
       select "低", from: "task_priority"
       click_button "新增任務"
     end
-    assert_current_path tasks_path, wait: 10
-    assert_text task_title
+    assert_text task_title, wait: 10
+    assert_current_path tasks_path
   end
 
   test "編輯任務" do
