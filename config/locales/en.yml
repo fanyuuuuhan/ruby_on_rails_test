@@ -112,23 +112,27 @@ en:
       low: "Low"
       medium: "Medium"
       high: "High"
-      tag: "Tag"
-      tag_placeholder: "Please enter tag name"
+      tags: "Tags"
+      tags_placeholder: "Please enter tag names, separated by commas"
     edit:
       edit_title: "Edit Task"
       back: "Back to Task List"
     show:
       show_back: "Back to Task List"
       show_status: "Task Status"
-    controller:
+    create:
       create_success: "Task created successfully"
       create_fail: "Task creation failed"
+    update:
       update_success: "Task updated successfully"
       update_fail: "Task update failed"
+    destroy:
       destroy_success: "Task deleted successfully"
   users:
     model:
       cannot_demote_self: "Cannot demote yourself from admin"
+      cannot_delete_last_admin: "Cannot delete the last admin user"
+      cannot_remove_last_admin: "Cannot remove the last admin user"
     new:
       signup: "Sign Up"
       name: "Name"
@@ -171,6 +175,8 @@ en:
         user_count: "User Count"
         new: "+Add User"
         back: "Back to home Page"
+        task_count: "Task Count"
+        delete_check: "Are you sure you want to delete?"
       show:
         title: "User Details"
         username: "Username"
@@ -180,6 +186,8 @@ en:
         no: "No"
         no_tasks: "No tasks here"
         back: "Back to User List"
+        no_users: "No users here"
+        tasks: "Task List"
       new:
         title: "Add User"
         back: "Back to User List"
@@ -199,6 +207,8 @@ en:
         admin: "Admin?"
         submit: "Submit"
         back: "Cancel Edit"
+      update:
+        update_success: "User updated successfully"
       destroy:
         cannot_delete_self: "Cannot delete the currently logged-in user"
         deleted_success: "User deleted successfully"

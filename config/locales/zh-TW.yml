@@ -92,15 +92,19 @@ zh-TW:
     show:
       show_back: "回到任務列表"
       show_status: "任務狀態"
-    controller:
+    create:
       create_success: "任務建立成功"
       create_fail: "任務建立失敗"
+    update:
       update_success: "任務更新成功"
       update_fail: "任務更新失敗"
+    destroy:
       destroy_success: "任務刪除成功"
   users:
     model:
       cannot_demote_self: "無法移除自己的管理員權限"
+      cannot_delete_last_admin: "無法刪除最後一位管理員"
+      cannot_remove_last_admin: "無法移除最後一位管理員"
     new:
       signup: "註冊"
       name: "姓名"
@@ -139,11 +143,12 @@ zh-TW:
         no_users: "目前沒有使用者"
         yes: "是"
         no: "否"
-        no_users: "目前沒有使用者"
         delete_button: "🗑️"
         users_count: "使用者數量"
         new: "+新增使用者"
         back: "回首面"
+        task_count: "任務數量"
+        delete_check: "確定要刪除嗎？"
       show:
         title: "使用者詳細資料"
         username: "使用者姓名"
@@ -153,6 +158,8 @@ zh-TW:
         no: "否"
         no_tasks: "此使用者目前沒有任務"
         back: "回到使用者列表"
+        no_users: "目前沒有使用者"
+        tasks: "任務列表"
       new:
         title: "新增使用者"
         back: "取消新增"
@@ -172,6 +179,8 @@ zh-TW:
         admin: "是否為管理員"
         submit: "更新使用者資訊"
         back: "取消編輯"
+      update:
+        update_success: "使用者更新成功"
       destroy:
         cannot_delete_self: "無法刪除目前登入的帳號"
         deleted_success: "使用者刪除成功"

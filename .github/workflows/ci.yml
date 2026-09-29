@@ -147,7 +147,7 @@ jobs:
 
       - name: Upload Rails request logs
         uses: actions/upload-artifact@v4
-        if: always()
+        if: failure()
         with:
           name: rails-system-test-logs
           path: |

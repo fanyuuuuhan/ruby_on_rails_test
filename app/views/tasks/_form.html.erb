@@ -46,7 +46,7 @@
     <%= form.select :priority, 
       options_for_select([[t(".low"), 'low'],
       [t(".medium"), 'medium'],
-      [t(".high"), 'high']]) %>
+      [t(".high"), 'high']], @task.priority || 'low') %>
   </div>
 
   <div>
