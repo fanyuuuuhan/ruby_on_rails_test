@@ -138,8 +138,8 @@ class Task < ApplicationRecord
     names = input.to_s.split(/[,，]/).map(&:strip).compact_blank
     return all if names.blank?
 
-    search_tags_id = TaskTag.joins(:tag).where(tags: { name: names }).select(:task_id)
-    where(id: search_tags_id)
+    search_task_ids = TaskTag.joins(:tag).where(tags: { name: names }).select(:task_id)
+    where(id: search_task_ids)
   }
 
   def tag_names
