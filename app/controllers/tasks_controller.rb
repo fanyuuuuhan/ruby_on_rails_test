@@ -6,15 +6,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks =
-    if current_user
-      filters = params.permit(*Task::SEARCH_SCOPES).to_h
-      current_user.tasks.search(filters)
-                        .sorted_by(params[:sort_order])
-    else
-      Task.none
-    end
-
+    @tasks = current_user ? filtered_tasks : Task.none
     @pagy, @tasks = pagy(:offset, @tasks, limit: 5)
   end
 
@@ -31,9 +23,9 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_path, notice: t("tasks.controller.create_success")
+      redirect_to tasks_path, status: :see_other, notice: t(".create_success")
     else
-      flash.now[:alert] = t("tasks.controller.create_fail")
+      flash.now[:alert] = t(".create_fail")
       render :new, status: :unprocessable_entity
     end
   end
@@ -43,9 +35,9 @@ class TasksController < ApplicationController
   # 失敗->回到編輯頁面
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: t("tasks.controller.update_success")
+      redirect_to tasks_path, status: :see_other, notice: t(".update_success")
     else
-      flash.now[:alert] = t("tasks.controller.update_fail")
+      flash.now[:alert] = t(".update_fail")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -53,7 +45,7 @@ class TasksController < ApplicationController
   # 刪除任務
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: t("tasks.controller.destroy_success")
+    redirect_to tasks_path, status: :see_other, notice: t(".destroy_success")
   end
 
   # 編輯任務
@@ -62,9 +54,20 @@ class TasksController < ApplicationController
 
   private
 
-  # 僅允許 title, content, status, due_date, priority 這五個欄位被傳入
+  def filtered_tasks
+    current_user.tasks
+                .includes(:tags)
+                .search(search_params)
+                .sorted_by(params[:sort_order])
+  end
+
+  def search_params
+    params.permit(*Task::SEARCH_SCOPES)
+  end
+
+  # 僅允許 title, content, status, due_date, priority 這五個欄位和 tag_names 被傳入
   def task_params
-    params.require(:task).permit(:title, :content, :status, :due_date, :priority)
+    params.require(:task).permit(:title, :content, :status, :due_date, :priority, :tag_names)
   end
 
   def set_task

@@ -251,6 +251,26 @@ class TaskTest < ActiveSupport::TestCase
     assert_empty Task.priority_in([ "invalid" ]).to_a
   end
 
+  test "可以依標籤查詢並支援全形逗號" do
+    matching_task = create(:task, title: "標籤任務")
+    matching_task.tags << Tag.create!(name: "工作")
+    other_task = create(:task, title: "其他標籤任務")
+    other_task.tags << Tag.create!(name: "私人")
+
+    assert_equal [ matching_task ], Task.search(tag_names: "工作").to_a
+    assert_equal [ matching_task, other_task ], Task.search(tag_names: "工作，私人").to_a
+  end
+
+  test "設定標籤名稱時會忽略空白標籤" do
+    task = build(:task)
+
+    task.tag_names = "工作，，私人，"
+
+    assert task.save
+    assert_equal %w[工作 私人], task.tags.order(:name).pluck(:name)
+    assert_not Tag.exists?(name: "")
+  end
+
   test "可以查詢指定截止日期起始之後的任務" do
     create(
       :task,

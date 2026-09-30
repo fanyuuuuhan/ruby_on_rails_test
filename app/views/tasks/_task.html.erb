@@ -16,6 +16,14 @@
     </p>
   </div>
 
+  <div class="flex gap-2">
+    <% task.tags.each do |tag| %>
+      <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded">
+        <%= tag.name %>
+      </span>
+    <% end %>
+  </div>
+
   <%= link_to edit_task_path(task),
       data: { turbo_frame: dom_id(task) },
       aria: { label: t("tasks.index.edit") },
